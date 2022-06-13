@@ -1,0 +1,221 @@
+@import '~antd/lib/style/themes/default.less';
+
+.uiRow {
+  display: flex;
+  flex-direction: row;
+  padding: 5px 0;
+}
+
+.listAction {
+  display: flex;
+  align-items: center;
+  min-height: 60px;
+}
+.listImg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.widgetsCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 12px 0;
+  :global {
+    .antd-pro-components-common-button-index-button
+      + .antd-pro-components-common-button-index-button {
+      margin-left: 15px;
+    }
+  }
+}
+
+.required {
+  color: #545454;
+  &::before {
+    display: inline-block;
+    margin-right: 4px;
+    color: @error-color;
+    font-size: 14px;
+    font-family: SimSun, sans-serif;
+    line-height: 1;
+    content: '*';
+  }
+}
+
+.dropdownAction {
+  margin: 0 0 8px ;
+}
+.dropdownActionFloat {
+  position: absolute;
+  top: 8px;
+  z-index: 1;
+}
+.dropdownRwd {
+  display: flex;
+}
+.dropdownRwdXs {
+  display: flex;
+}
+.dropdownRwdLg {
+  display: none;
+}
+@media (min-width: 992px) {
+  .dropdownRwdXs {
+    display: none;
+  }
+  .dropdownRwdLg {
+    display: flex;
+  }
+}
+
+.pageTotal {
+  width: 35px;
+  text-align: center;
+}
+
+.gridRow321 {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  &.gridRowBottom {
+    margin-bottom: 30px;
+  }
+  :global {
+    @media (min-width: 992px) and (max-width: 1599px) {
+      .ant-col.ant-col-xs-24.ant-col-lg-12.ant-col-xxl-8:nth-child(2n + 1) {
+        clear: both;
+      }
+    }
+    @media (min-width: 1600px) {
+      .ant-col.ant-col-xs-24.ant-col-lg-12.ant-col-xxl-8:nth-child(3n + 1) {
+        clear: both;
+      }
+    }
+  }
+}
+
+.inputExpansion {
+  display: flex;
+  flex-wrap: nowrap;
+  height: 32px;
+  line-height: 32px;
+  :global {
+    .ant-input[disabled] {
+      color: inherit;
+      background: #fafafa;
+      border-left: 0;
+      cursor: text;
+    }
+  }
+  &.isDatePicker {
+    :global {
+      .ant-input[disabled] {
+        display: none;
+      }
+      .ant-input-group-addon:first-child {
+        z-index: 9;
+        display: inline-block;
+        width: auto;
+        height: 32px;
+        line-height: 32px;
+      }
+      .ant-input-group-addon:last-child {
+        width: 100%;
+        padding: 0;
+        border-width: 0 0 0 1px;
+      }
+      .ant-calendar-picker-input.ant-input {
+        text-align: left;
+        border-radius: 0 4px 4px 0;
+      }
+    }
+  }
+  &.isInputNumber {
+    :global {
+      .ant-input-number {
+        width: 100%;
+      }
+    }
+  }
+  &.isSelect {
+    :global {
+      .ant-select-selection {
+        border-radius: 0;
+      }
+    }
+  }
+  &.addonBeforeOnly {
+    :global {
+      .ant-input-number {
+        border-radius: 0 4px 4px 0;
+      }
+    }
+  }
+  &.addonAfterOnly {
+    :global {
+      .ant-input-number {
+        border-radius: 4px 0 0 4px;
+      }
+    }
+  }
+  &.addonBeforeOnly.addonAfterOnly {
+    :global {
+      .ant-input-number {
+        border-radius: 0;
+      }
+    }
+  }
+  .children {
+    flex: 1;
+  }
+  .addonBefore,
+  .addonAfter {
+    padding: 0 5px;
+    color: @text-color;
+    line-height: 30px;
+    background: #fafafa;
+    border: 1px solid #d9d9d9;
+    :global {
+      .ant-select-selection__rendered {
+        margin: 0;
+      }
+      .ant-select-selection {
+        height: 30px;
+        background: none;
+        border: 0;
+        box-shadow: none;
+      }
+    }
+  }
+  .addonBefore {
+    border-right: 0;
+    border-radius: 4px 0 0 4px;
+  }
+  .addonAfter {
+    border-left: 0;
+    border-radius: 0 4px 4px 0;
+  }
+}
+
+:global {
+  .antd-pro-components-drawer-index-customDrawerStyle
+    .antd-pro-components-ui-tools-index-widgetsCenter {
+    padding: 12px 0 20px;
+    border-bottom: 1px solid #e5e5e5;
+  }
+  // dropdownRwd
+  .ant-dropdown-menu-submenu-popup .ant-menu-vertical .ant-menu-item {
+    height: 22px;
+    line-height: 22px;
+  }
+  .has-error {
+    .antd-pro-components-ui-tools-index-inputExpansion
+      .antd-pro-components-ui-tools-index-addonBefore,
+    .antd-pro-components-ui-tools-index-inputExpansion
+      .antd-pro-components-ui-tools-index-addonAfter {
+      color: @error-color;
+      border-color: @error-color;
+    }
+  }
+}

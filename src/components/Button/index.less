@@ -1,0 +1,135 @@
+@import '~antd/lib/style/themes/default.less';
+
+.button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  cursor: pointer;
+  & + .button {
+    margin: 0 0 0 5px;
+  }
+}
+
+.text {
+  color: #545454;
+  font-weight: 300;
+  & + .icon {
+    margin-left: 5px;
+  }
+}
+.icon {
+  fill: #7f7f7f;
+  & + .text {
+    margin-left: 5px;
+  }
+}
+// 白底灰框
+.default {
+  border: 1px solid #ccc;
+  .icon {
+    width: 14px;
+    height: 14px;
+  }
+  &:hover,
+  &:focus,
+  &:active {
+    .text,
+    .icon {
+      color: @primary-color;
+      fill: @primary-color;
+    }
+  }
+  &:focus {
+    border: 1px solid #ccc;
+    .text,
+    .icon {
+      color: #545454;
+      fill: #7f7f7f;
+    }
+  }
+}
+// 主題色且填滿
+.primary {
+  color: @btn-primary-color;
+  background-color: @primary-color;
+  .icon {
+    width: 14px;
+    height: 14px;
+  }
+  .icon,
+  .text {
+    color: @btn-primary-color;
+    fill: @btn-primary-color;
+  }
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: @primary-5;
+    .icon,
+    .text {
+      color: @btn-primary-color;
+      fill: @btn-primary-color;
+    }
+  }
+  &:focus {
+    background-color: @primary-color;
+  }
+}
+// 無框透明底
+.link {
+  padding: 2px;
+  .icon {
+    width: 20px;
+    height: 20px;
+  }
+  .text {
+    color: @primary-color;
+  }
+  &:hover,
+  &:focus,
+  &:active {
+    background: transparent;
+    border: 0;
+    .text,
+    .icon {
+      color: @primary-color;
+      fill: @primary-color;
+    }
+  }
+  &.disabled,
+  &.disabled:hover {
+    background: transparent;
+  }
+}
+
+//
+.disabled,
+.disabled:hover {
+  color: rgba(0, 0, 0, 0.25);
+  background: #f5f5f5;
+  border-color: #d9d9d9;
+  cursor: not-allowed;
+  .icon,
+  .text {
+    color: rgba(0, 0, 0, 0.25);
+    fill: rgba(0, 0, 0, 0.25);
+  }
+}
+.small {
+  padding: 2px;
+  &.default {
+    padding: 2px 7px;
+  }
+}
+.spinStyle {
+  width: 23px;
+  & + .text {
+    margin-left: 10px;
+  }
+}
+// .large {
+// }
