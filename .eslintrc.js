@@ -7,8 +7,6 @@ module.exports = {
     'prettier',
     'plugin:compat/recommended',
     'plugin:react-hooks/recommended',
-    'plugin:storybook/recommended',
-    'plugin:storybook/recommended',
   ],
   env: {
     browser: true,
@@ -42,5 +40,6 @@ module.exports = {
     'jsx-a11y/click-events-have-key-events': 0,
     'jsx-a11y/no-static-element-interactions': 0,
     'jsx-a11y/anchor-is-valid': 0,
+    'indent': ['error', 2],
   },
 };

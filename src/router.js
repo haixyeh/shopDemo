@@ -28,19 +28,13 @@ const RouteConfig = [
       {
         path: '/menus',
         component: () => import('./pages/Menus'),
-        model: [],
+        model: [import('./models/menus')],
         isAuthority
       },
       {
         path: '/admin',
         component: () => import('./pages/Admin'),
         model: [import('./models/admin')],
-        isAuthority
-      },
-      {
-        path: '/weather',
-        component: () => import('./pages/Weather'),
-        model: [],
         isAuthority
       },
       {
@@ -100,9 +94,9 @@ function RouterConfig({ history, app }) {
   return (
     <Router history={history}>
       <Switch>
-        {/* <Route path="/" component={IndexPage} /> */}
         {RouteConfig.map((route, i) => (
-          // 调用封装组件
+          // 調用封裝組件
+          // eslint-disable-next-line react/no-array-index-key
           <SubRoutes key={i} {...route} app={app} />
         ))}
       </Switch>

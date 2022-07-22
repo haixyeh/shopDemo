@@ -113,18 +113,18 @@ class CustomTable extends PureComponent {
     // NOTE: 如果沒有 pagination 的需求，要回傳 false，不然會有預設分頁器在 Table 下方
     const customPagination = pagination
       ? {
-          ...pagination,
-          locale,
-        }
+        ...pagination,
+        locale,
+      }
       : false;
 
     // NOTE: 如果螢幕寬度小於 375 則使用 simple 模式
-    const customPaginationXs = pagination
-      ? {
-          ...pagination,
-          simple: true,
-        }
-      : false;
+    // const customPaginationXs = pagination
+    //   ? {
+    //     ...pagination,
+    //     simple: true,
+    //   }
+    //   : false;
 
     // pagination total: 用來判斷筆數為 0 則不顯示 pagination
     const total = pagination ? pagination.total / pagination.pageSize : 0;

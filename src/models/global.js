@@ -1,5 +1,3 @@
-import { hasPrefixSuffix } from "antd/lib/input/ClearableLabeledInput";
-
 export default {
 
   namespace: 'global',

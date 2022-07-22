@@ -1,11 +1,11 @@
 import React from 'react';
 
 const Index = () => {
-    return (
-        <div>
-            Delivery
-        </div>
-    );
+  return (
+    <div>
+      Delivery
+    </div>
+  );
 }
 
 export default Index;

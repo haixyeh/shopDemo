@@ -1,53 +1,76 @@
-import { Input } from 'antd';
-import React, { useState, useEffect, useRef } from 'react';
-// 使用Custom hook
-// import useMouseY from './util/useMouseY';
+import React, { useEffect, useState } from 'react';
+import { connect } from 'dva';
+import { Button, Input } from 'antd';
+import style from './index.scss';
 
-const Index = () => {
-    const [account, setAccount] = useState('輸入拉');
+// eslint-disable-next-line compat/compat
+const ajaxSimulator = () => new Promise((resolve) => {
+  setTimeout(() => {
+    resolve('異步資料', 2000);
+  }, 2000);
+})
 
-    /* 使用Custom hook */
-    // const mousePosY = useMouseY();
-    // 使用Custom hook
-    // useEffect(() => {
-    //     console.log(mousePosY);
-    // }, [mousePosY])
+const Menus = (props) => {
+  const [txt, setTxt] = useState('隨機數字顯示');
+  const { dispatch } = props;
+  const { text = null, name = '', count = 0, loading = false} = props;
+  useEffect(() => {
+    dispatch({
+      type: "home/getList"
+    }) 
 
-    const ref = useRef('');
-    const [refText, setRefText] = useState('')
-    useEffect(() => {
-        console.log(ref);
-        // const { current: { value } } = ref;
-        if (!ref.current) {
-            ref.current = true;
-            console.log(refText, 'ref1');
-        } else {
-            console.log(refText, 'ref2');
-        }
-        return () => {
-            // cleanup
-            
-        }
-    }, [refText])
-    const onChangeInput = () => {
-        setRefText(ref.current.value);
-    }
+    ajaxSimulator().then((res) => {
+      setTxt(res);
+    })
+  }, [dispatch, txt, text, name, count])
+
+  const addCount = () => {
+    dispatch({
+      type: "home/addAfterSecond"
+    }) 
+  }
+  const setYourName = (e) => {
+    dispatch({
+      type: "home/setYourName",
+      payload: {'name': e.target.value}
+    }) 
+  }
     
-    return (
-        <div>
-            <input type="text" ref={ref} onChange={onChangeInput} value={refText}></input>
-            <input
-                type="text"
-                defaultValue={account}
-                value={account}
-                onChange={(e) => {
-                    setAccount(e.target.value)
-                }}
-            >
-            </input>
-            <div>目前的Account: {account}</div>
+
+  return (
+    <>
+      <div className={style.menus}>
+        <div className={style.background}>
+          <h1>歡迎大家來到Ryan pizza</h1>
+          <h2>喝喝喝喝喝喝!~~~ {loading && '加載中，請稍候'}</h2>
+          <p>{text} - {name}</p>
+          <p>{count}</p>
+          <Input placeholder="Enter your names" onChange={setYourName} />
         </div>
-    );
+        <Button type="button" onClick={addCount} disabled={loading}>按我加1</Button>
+        <div>
+          {txt}
+        </div>
+        <Button
+          type="button"
+          onClick={() => {
+            setTxt(Math.floor(Math.random() * 10));
+          }}
+        >隨機產生數字
+        </Button>
+      </div>
+    </>
+
+  );
 }
 
-export default Index;
+const mapStateToProps = (state) => {
+  return {
+    text: state.menus?.text,
+    name: state.menus.name,
+    count: state.menus.count,
+    loading: state.menus.loading
+  }
+}
+
+export default connect(mapStateToProps)(Menus);

@@ -22,6 +22,7 @@ function IndexPage(props) {
       <Content className={styles.content}>
         <Switch>
           {routes.map((route, i) => (
+            // eslint-disable-next-line react/no-array-index-key
             <SubRoutes key={i} {...route} app={app} />
           ))}
           {/* <Redirect to="/home" /> */}
