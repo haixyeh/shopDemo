@@ -1,1 +1,1 @@
-webpackJsonp([12],{StJE:function(e,t,u){"use strict";var n=u("ouCL");Object.defineProperty(t,"__esModule",{value:!0}),t.default=void 0;var r=n(u("GiK3")),d=function(){return r.default.createElement("div",null,"OrderingGuide")},i=d;t.default=i}});
+webpackJsonp([12],{fbtZ:function(e,t,u){"use strict";var n=u("ouCL");Object.defineProperty(t,"__esModule",{value:!0}),t.default=void 0;var r=n(u("GiK3")),a=function(){return r.default.createElement("div",null,"History")},i=a;t.default=i}});

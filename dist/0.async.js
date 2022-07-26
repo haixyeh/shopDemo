@@ -36494,6 +36494,7 @@ module.exports = debounce;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 // EXTERNAL MODULE: ./node_modules/react/index.js
 var react = __webpack_require__("GiK3");
@@ -37166,7 +37167,7 @@ tooltip_Tooltip.defaultProps = {
   autoAdjustOverflow: true
 };
 Object(react_lifecycles_compat_es["polyfill"])(tooltip_Tooltip);
-/* harmony default export */ var tooltip = __webpack_exports__["a"] = (tooltip_Tooltip);
+/* harmony default export */ var tooltip = __webpack_exports__["default"] = (tooltip_Tooltip);
 
 /***/ }),
 
@@ -50392,7 +50393,7 @@ var MenuItem_MenuItem = /*#__PURE__*/function (_React$Component) {
           tooltipProps.visible = false;
         }
 
-        return /*#__PURE__*/react["createElement"](tooltip["a" /* default */], MenuItem__extends({}, tooltipProps, {
+        return /*#__PURE__*/react["createElement"](tooltip["default"], MenuItem__extends({}, tooltipProps, {
           placement: "right",
           overlayClassName: "".concat(rootPrefixCls, "-inline-collapsed-tooltip")
         }), /*#__PURE__*/react["createElement"](es["b" /* Item */], MenuItem__extends({}, rest, {
@@ -69801,7 +69802,7 @@ var Popover = /*#__PURE__*/function (_React$Component) {
 
       delete props.title;
       var prefixCls = getPrefixCls('popover', customizePrefixCls);
-      return /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_1__tooltip__["a" /* default */], _extends({}, props, {
+      return /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_1__tooltip__["default"], _extends({}, props, {
         prefixCls: prefixCls,
         ref: _this.saveTooltip,
         overlay: _this.getOverlay(prefixCls)
@@ -73453,8 +73454,7 @@ var text = /*#__PURE__*/_react.default.createElement("span", null, "Popover");
 var content = /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, "\u5C08\u696D\u3001\u81EA\u4FE1\u3001\u512A\u79C0"), /*#__PURE__*/_react.default.createElement("p", null, "Content"));
 
 var Index = function Index(props) {
-  var name = props.name,
-      dispatch = props.dispatch,
+  var dispatch = props.dispatch,
       query = props.query,
       listData = props.listData,
       info = props.info;
@@ -73479,7 +73479,7 @@ var Index = function Index(props) {
     }, 400);
   };
 
-  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h1", null, name, " - Anywhere in your app!"), /*#__PURE__*/_react.default.createElement(_formik.Formik, {
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_formik.Formik, {
     initialValues: {
       email: '',
       password: ''
@@ -73504,7 +73504,6 @@ var Index = function Index(props) {
 };
 
 Index.defaultProps = {
-  name: 'Ryan',
   query: {}
 };
 
