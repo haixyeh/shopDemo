@@ -1,0 +1,43 @@
+@import '../../less/common.less';
+
+.subMenu {
+  margin-top: 3px;
+}
+.mainMenuWrapper {
+  width: 100%;
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+.mainMenu {
+  display: flex;
+  flex-wrap: wrap;
+  color: inherit;
+
+  .dropdownArrow {
+    margin-left: 0.75em;
+  }
+
+  .item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1em;
+    font-size: @font-size-md;
+    white-space: nowrap;
+    background-color: transparent;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    &.dropdown {
+      position: relative;
+    }
+  }
+
+  .link {
+    width: 100%;
+    color: inherit !important;
+    font-size: @font-size-md;
+    text-align: center;
+  }
+}

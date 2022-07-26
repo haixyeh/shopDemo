@@ -116,10 +116,8 @@ const content = (
 );
 
 
-
-
 const Index = (props) => {
-  const { name, dispatch, query, listData, info } = props;
+  const { dispatch, query, listData, info } = props;
 
   useEffect(() => {
     return () => {
@@ -143,7 +141,6 @@ const Index = (props) => {
 
   return (
     <div>
-      <h1>{name} - Anywhere in your app!</h1>
       <Formik
         initialValues={{ email: '', password: '' }}
         validationSchema={valuesScheme}
@@ -169,13 +166,11 @@ const Index = (props) => {
 }
 
 Index.propTypes = {
-  name: PropTypes.string,
   query: PropTypes.object,
   listData: PropTypes.array.isRequired,
   info: PropTypes.object.isRequired
 }
 Index.defaultProps = {
-  name: 'Ryan',
   query: {}
 }
 

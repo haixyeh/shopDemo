@@ -1,5 +1,5 @@
 
-import { delay } from 'redux-saga';
+// import { delay } from 'redux-saga';
 
 export default {
   namespace: 'menus',
@@ -14,19 +14,19 @@ export default {
     },
   },
   effects: {
-        *fetch({ payload }, { call, put }) {  // eslint-disable-line
+    *fetch({ payload }, { call, put }) {  // eslint-disable-line
       yield put({ type: 'save' });
     },
-    *addAfterSecond(action, { call, put }) {
+    *addAfterSecond(action, { put }) {
       // eslint-disable-next-line no-undef
       yield put({
         type: 'addCount',
-        payload: {loading: true}
+        payload: { loading: true }
       });
-      yield call(delay, 500);
+      // yield call(delay, 500);
       yield put({
         type: 'overAddCount',
-        payload: {loading: false}
+        payload: { loading: false }
       });
     },
     *setYourName({ payload }, { put}) {

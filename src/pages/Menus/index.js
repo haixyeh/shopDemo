@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'dva';
 import { Button, Input } from 'antd';
-import style from './index.scss';
+import style from './index.less';
 
 // eslint-disable-next-line compat/compat
 const ajaxSimulator = () => new Promise((resolve) => {
@@ -16,7 +16,7 @@ const Menus = (props) => {
   const { text = null, name = '', count = 0, loading = false} = props;
   useEffect(() => {
     dispatch({
-      type: "home/getList"
+      type: "menus/getList"
     }) 
 
     ajaxSimulator().then((res) => {
@@ -26,12 +26,12 @@ const Menus = (props) => {
 
   const addCount = () => {
     dispatch({
-      type: "home/addAfterSecond"
+      type: "menus/addAfterSecond"
     }) 
   }
   const setYourName = (e) => {
     dispatch({
-      type: "home/setYourName",
+      type: "menus/setYourName",
       payload: {'name': e.target.value}
     }) 
   }
@@ -41,7 +41,7 @@ const Menus = (props) => {
     <>
       <div className={style.menus}>
         <div className={style.background}>
-          <h1>歡迎大家來到Ryan pizza</h1>
+          <h1>歡迎大家來到Ryan SHOP</h1>
           <h2>喝喝喝喝喝喝!~~~ {loading && '加載中，請稍候'}</h2>
           <p>{text} - {name}</p>
           <p>{count}</p>

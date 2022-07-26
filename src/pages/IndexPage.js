@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'dva';
 import { Layout } from 'antd';
 
@@ -7,18 +8,18 @@ import { Switch } from 'dva/router';
 import SubRoutes, { RedirectRoute, NoMatchRoute } from '../utils/SubRoutes';
 
 import NavBar from './NavBar';
-import styles from './IndexPage.scss';
+import styles from './IndexPage.less';
 
 const { Header, Content } = Layout;
 
 function IndexPage(props) {
   const { routes, app } = props;
+
   return (
     <Layout className={styles.layout}>
       <Header className={styles.header}>
         <NavBar {...props} />
       </Header>
-
       <Content className={styles.content}>
         <Switch>
           {routes.map((route, i) => (
@@ -35,6 +36,9 @@ function IndexPage(props) {
   );
 }
 
-IndexPage.propTypes = {};
+IndexPage.propTypes = {
+  routes: PropTypes.array.isRequired,
+  app: PropTypes.object.isRequired
+};
 
 export default connect()(IndexPage);

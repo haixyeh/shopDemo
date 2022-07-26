@@ -1,4 +1,4 @@
-@import '../../scss/common.scss';
+@import '../../less/common.less';
 
 .header {
   white-space: nowrap;
@@ -17,7 +17,7 @@
     background: none;
     border-bottom: none;
     position: relative;
-    width: calc(100% - 44px);
+    width: calc(~"100% - 44px");
     .login {
       position: absolute;
       right: 68px;
@@ -30,8 +30,8 @@
   .dropdown-menu {
     position: absolute;
     right: 10px;
-    height: $header-height;
-    line-height: $header-height;
+    height: @header-height;
+    line-height: @header-height;
     .email {
       display: inline-block;
       line-height: 1em;

@@ -2,9 +2,10 @@ import React, { useState, useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import styled from 'styled-components';
-import lessStyled from './index.less';
+import Image from '../Image';
 import bannerLeft from '../../assets/svg/banner-left.svg';
 import bannerRight from '../../assets/svg/banner-right.svg';
+import lessStyled from './index.less';
 
 export const TypeEnum = {
   FADE: 'FADE',
@@ -117,20 +118,20 @@ const Banner = props => {
                   key={item.id}
                 >
                   <a href={item.url} target="_blank" rel="noreferrer">
-                    <img className={lessStyled.bannerImage} src={item.img} alt="" />
+                    <Image className={lessStyled.bannerImage} src={item.img} alt="" />
                   </a>
                 </div>
               ))}
             </div>
 
-            <img
+            <Image
               src={bannerLeft}
               className={classNames(lessStyled.bannerControl, lessStyled.bannerControlLeft)}
               onClick={slidePrev}
               alt="arrow left"
               aria-hidden="true"
             />
-            <img
+            <Image
               src={bannerRight}
               className={classNames(lessStyled.bannerControl, lessStyled.bannerControlRight)}
               onClick={slideNext}
