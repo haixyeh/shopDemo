@@ -68,11 +68,11 @@ export const mainMenuDefault = [
     menuCategory: 'MAIN',
     folderSwitch: 'NO',
     title: '全站',
-    link: 'selcategoryview',
+    link: 'setCategoryView',
     linkData: '0',
     linkDetail: {
       text: '商品分類',
-      value: 'selcategoryview',
+      value: 'setCategoryView',
       data: {
         meta: {
           title: '商品分類',
@@ -84,48 +84,48 @@ export const mainMenuDefault = [
           {
             title: 'Ryan',
             url: '/category/1',
-            link: 'selcategory',
+            link: 'setCategory',
             linkData: '1',
             sub: [],
           },
           {
             title: '家電',
             url: '/category/2',
-            link: 'selcategoryview',
+            link: 'setCategoryView',
             linkData: '2',
             sub: [
               {
                 title: '冰箱',
                 url: '/category/21',
-                link: 'selcategory',
+                link: 'setCategory',
                 linkData: '21',
                 sub: [],
               },
               {
                 title: '冰櫃/冷凍櫃',
                 url: '/category/22',
-                link: 'selcategory',
+                link: 'setCategory',
                 linkData: '22',
                 sub: [],
               },
               {
                 title: '冷氣/暖氣',
                 url: '/category/23',
-                link: 'selcategory',
+                link: 'setCategory',
                 linkData: '23',
                 sub: [],
               },
               {
                 title: '除濕機',
                 url: '/category/24',
-                link: 'selcategory',
+                link: 'setCategory',
                 linkData: '24',
                 sub: [],
               },
               {
                 title: '掃地機',
                 url: '/category/25',
-                link: 'selcategory',
+                link: 'setCategory',
                 linkData: '25',
                 sub: [],
               },
@@ -134,34 +134,34 @@ export const mainMenuDefault = [
           {
             title: '3C',
             url: '/category/3',
-            link: 'selcategoryview',
+            link: 'setCategoryView',
             linkData: '3',
             sub: [
               {
                 title: '手機/平板',
                 url: '/category/31',
-                link: 'selcategory',
+                link: 'setCategory',
                 linkData: '31',
                 sub: [],
               },
               {
                 title: '手機/平板配件',
                 url: '/category/32',
-                link: 'selcategory',
+                link: 'setCategory',
                 linkData: '32',
                 sub: [],
               },
               {
                 title: '相機/相機配件',
                 url: '/category/33',
-                link: 'selcategory',
+                link: 'setCategory',
                 linkData: '33',
                 sub: [],
               },
               {
                 title: '數位週邊',
                 url: '/category/34',
-                link: 'selcategory',
+                link: 'setCategory',
                 linkData: '34',
                 sub: [],
               },
@@ -170,54 +170,54 @@ export const mainMenuDefault = [
           {
             title: '休閒服',
             url: '/category/40',
-            link: 'selcategoryview',
+            link: 'setCategoryView',
             linkData: '40',
             sub: [],
           },
           {
             title: '精品',
             url: '/category/49',
-            link: 'selcategoryview',
+            link: 'setCategoryView',
             linkData: '49',
             sub: [],
           },
           {
             title: '休閒服',
             url: '/category/62',
-            link: 'selcategoryview',
+            link: 'setCategoryView',
             linkData: '62',
             sub: [
               {
                 title: '歐美品牌',
                 url: '/category/63',
-                link: 'selcategoryview',
+                link: 'setCategoryView',
                 linkData: '63',
                 sub: [
                   {
                     title: 'FILA',
                     url: '/category/67',
-                    link: 'selcategory',
+                    link: 'setCategory',
                     linkData: '67',
                     sub: [],
                   },
                   {
                     title: 'CK',
                     url: '/category/66',
-                    link: 'selcategory',
+                    link: 'setCategory',
                     linkData: '66',
                     sub: [],
                   },
                   {
                     title: 'ARMANI EXCHANGE',
                     url: '/category/65',
-                    link: 'selcategory',
+                    link: 'setCategory',
                     linkData: '65',
                     sub: [],
                   },
                   {
                     title: 'America Eagle',
                     url: '/category/64',
-                    link: 'selcategory',
+                    link: 'setCategory',
                     linkData: '64',
                     sub: [],
                   },
@@ -226,27 +226,27 @@ export const mainMenuDefault = [
               {
                 title: '休閒服飾',
                 url: '/category/68',
-                link: 'selcategoryview',
+                link: 'setCategoryView',
                 linkData: '68',
                 sub: [
                   {
                     title: '北歐小刺蝟',
                     url: '/category/70',
-                    link: 'selcategory',
+                    link: 'setCategory',
                     linkData: '70',
                     sub: [],
                   },
                   {
                     title: 'ONEDER旺達',
                     url: '/category/69',
-                    link: 'selcategory',
+                    link: 'setCategory',
                     linkData: '69',
                     sub: [],
                   },
                   {
                     title: 'Aaron1982',
                     url: '/category/71',
-                    link: 'selcategory',
+                    link: 'setCategory',
                     linkData: '71',
                     sub: [],
                   },
@@ -257,19 +257,19 @@ export const mainMenuDefault = [
           {
             title: '書籍類',
             url: '/category/43',
-            link: 'selcategoryview',
+            link: 'setCategoryView',
             linkData: '43',
             sub: [
               {
                 title: '文學小說',
                 url: '/category/44',
-                link: 'selcategoryview',
+                link: 'setCategoryView',
                 linkData: '44',
                 sub: [
                   {
                     title: '英國翻譯小說',
                     url: '/category/45',
-                    link: 'selcategory',
+                    link: 'setCategory',
                     linkData: '45',
                     sub: [],
                   },
@@ -280,20 +280,20 @@ export const mainMenuDefault = [
           {
             title: '廚房系列',
             url: '/category/88',
-            link: 'selcategoryview',
+            link: 'setCategoryView',
             linkData: '88',
             sub: [
               {
                 title: '微波爐',
                 url: '/category/90',
-                link: 'selcategory',
+                link: 'setCategory',
                 linkData: '90',
                 sub: [],
               },
               {
                 title: '氣炸鍋',
                 url: '/category/89',
-                link: 'selcategory',
+                link: 'setCategory',
                 linkData: '89',
                 sub: [],
               },
@@ -302,13 +302,13 @@ export const mainMenuDefault = [
           {
             title: '生活家具',
             url: '/category/93',
-            link: 'selcategoryview',
+            link: 'setCategoryView',
             linkData: '93',
             sub: [
               {
                 title: ' 沙發',
                 url: '/category/92',
-                link: 'selcategory',
+                link: 'setCategory',
                 linkData: '92',
                 sub: [],
               },
@@ -317,36 +317,14 @@ export const mainMenuDefault = [
           {
             title: '櫃子',
             url: '/category/94',
-            link: 'selcategoryview',
+            link: 'setCategoryView',
             linkData: '94',
             sub: [
               {
                 title: '衣櫃/系統櫃',
                 url: '/category/95',
-                link: 'selcategory',
+                link: 'setCategory',
                 linkData: '95',
-                sub: [],
-              },
-            ],
-          },
-          {
-            title: 'Ryan',
-            url: '/category/168',
-            link: 'selcategoryview',
-            linkData: '168',
-            sub: [
-              {
-                title: 'Ryan 嘿嘿',
-                url: '/category/171',
-                link: 'selcategory',
-                linkData: '171',
-                sub: [],
-              },
-              {
-                title: 'Ryan Sub',
-                url: '/category/170',
-                link: 'selcategory',
-                linkData: '170',
                 sub: [],
               },
             ],
@@ -354,14 +332,14 @@ export const mainMenuDefault = [
           {
             title: '防疫用品',
             url: '/category/186',
-            link: 'selcategoryview',
+            link: 'setCategoryView',
             linkData: '186',
             sub: [],
           },
           {
             title: '測試第二分類用',
             url: '/category/187',
-            link: 'selcategory',
+            link: 'setCategory',
             linkData: '187',
             sub: [],
           },
@@ -376,11 +354,11 @@ export const mainMenuDefault = [
     menuCategory: 'MAIN',
     folderSwitch: 'NO',
     title: '最新活動',
-    link: 'neweventview',
+    link: 'newEventView',
     linkData: '',
     linkDetail: {
       text: '最新活動',
-      value: 'neweventview',
+      value: 'newEventView',
       data: {
         meta: {
           title: '最新活動',

@@ -17,12 +17,13 @@ const NavBar = (props) => {
         selectedKeys={pathname || defaultSelectedKeys}
       >
         <Menu.Item key="home"><Link to="/home">Ryan Home</Link></Menu.Item>
+        <Menu.Item key="about"><Link to="/about">About Us</Link></Menu.Item>
+        {/* 暫時不設計 */}
         {/* <Menu.Item key="webSet"><Link to="/webSet">測試頁面</Link></Menu.Item> */}
-        <Menu.Item key="menus"><Link to="/menus">菜單</Link></Menu.Item>
-        <Menu.Item key="admin"><Link to="/admin">管理</Link></Menu.Item>
-        <Menu.Item key="about"><Link to="/about">關於我們</Link></Menu.Item>
-        <Menu.Item className={style.login} key="login"><Link to="/login">登入</Link></Menu.Item>
-        <Menu.Item className={style.register} key="register"><Link to="/register">註冊</Link></Menu.Item>
+        {/* <Menu.Item key="menus"><Link to="/menus">菜單</Link></Menu.Item> */}
+        {/* <Menu.Item key="admin"><Link to="/admin">管理</Link></Menu.Item> */}
+        <Menu.Item className={style.login} key="login"><Link to="/login">Login</Link></Menu.Item> 
+        <Menu.Item className={style.register} key="register"><Link to="/register">Register</Link></Menu.Item>
       </Menu>
     </nav>
   );

@@ -3,8 +3,7 @@ import { withRouter } from 'dva/router';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import styled, { css } from 'styled-components';
-import Image from '../Image';
-import MenuDropdownArrow from '../../assets/svg/menu-dropdown-arrow.svg';
+import Icon from '../Icon';
 import Navigation from './Navigation';
 import MegaMenu from './MegaMenu';
 import useDropdownMenu from '../../utils/useDropdownMenu';
@@ -50,9 +49,9 @@ const MainMenuItem = props => {
   } = props;
   const link = folderSwitch === 'YES' ? '' : rawLink;
   const dropdownMenu = useDropdownMenu();
-  let selcategoryviewData;
-  if (rawLink === 'selcategoryview') {
-    selcategoryviewData =
+  let setCategoryViewData;
+  if (rawLink === 'setCategoryView') {
+    setCategoryViewData =
       linkData === '0' ? linkDetail?.data?.list : linkDetail?.data?.list[0]?.sub;
   }
 
@@ -67,13 +66,13 @@ const MainMenuItem = props => {
   let dropdownElement = null;
   switch (link) {
   /** 商品分類 */
-  case 'selcategoryview': {
+  case 'setCategoryView': {
     hasDropdown = true;
     dropdownEvent = dropdownMenu.bindEvent();
     dropdownElement = (
       <>
-        <Image
-          src={MenuDropdownArrow}
+        <Icon
+          type="MenuDropdownArrow"
           className={mainMenuStyled.dropdownArrow}
           color={colorSetting}
         />
@@ -81,7 +80,7 @@ const MainMenuItem = props => {
           className={classNames(mainMenuStyled.subMenu)}
           dark={subMenuDark}
           color={textHoverColor}
-          data={selcategoryviewData}
+          data={setCategoryViewData}
           {...dropdownMenu.bindDropdownMenu()}
           history={history}
         />
@@ -90,13 +89,13 @@ const MainMenuItem = props => {
     break;
   }
   /** 最新消息 */
-  case 'neweventview': {
+  case 'newEventView': {
     hasDropdown = true;
     dropdownEvent = dropdownMenu.bindEvent();
     dropdownElement = (
       <>
-        <Image
-          src={MenuDropdownArrow}
+        <Icon
+          type="MenuDropdownArrow"
           className={mainMenuStyled.dropdownArrow}
           color={colorSetting}
         />
@@ -123,8 +122,8 @@ const MainMenuItem = props => {
     // header 資料裡面的 sub 資料
     dropdownElement = (
       <>
-        <Image
-          src={MenuDropdownArrow}
+        <Icon
+          type="MenuDropdownArrow"
           className={mainMenuStyled.dropdownArrow}
           color={colorSetting}
         />
@@ -192,9 +191,9 @@ MainMenuItem.propTypes = {
   /** 標題 */
   title: PropTypes.string,
   /** 連結類型
-   * - `selcategoryview`: 商品分類（folderSwitch 需為 'NO'）
-   * - `selcategory`: 末端商品分類
-   * - `neweventview`: 最新消息
+   * - `setCategoryView`: 商品分類（folderSwitch 需為 'NO'）
+   * - `setCategory`: 末端商品分類
+   * - `newEventView`: 最新消息
    * - `空`: 其它項目(需配合傳入 sub)
    * - `其它`: 其它項目(除上述項目外，傳入的 link)
    */
@@ -229,7 +228,7 @@ MainMenuItem.propTypes = {
   /** 高度 */
   height: PropTypes.number,
   /** 最新消息資料(newEventList by the SiteContext)
-   * ### 當 link 為 neweventview 時，需傳入 newEventList
+   * ### 當 link 為 newEventView 時，需傳入 newEventList
    */
   newEventList: PropTypes.array,
   /** 跳轉 route 對應位置 */

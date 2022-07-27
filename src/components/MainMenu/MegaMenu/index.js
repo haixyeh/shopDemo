@@ -1,14 +1,12 @@
 /* eslint-disable no-shadow */
 import React, { useState, useReducer } from 'react';
 import PropTypes from 'prop-types';
-import { Tooltip } from 'antd';
 import styled from 'styled-components';
-import { chunk } from 'lodash';
+import chunk from 'lodash/chunk';
 import classNames from 'classnames';
 import { createMachine } from '@xstate/fsm';
 import { useMachine } from '@xstate/react/lib/fsm';
-import CloseGray from '../../../assets/svg/close-gray.svg';
-import Image from '../../Image';
+import Icon from '../../Icon';
 import navigationStyled from '../navigate.less';
 
 const ListLabel = styled.span`
@@ -131,12 +129,9 @@ const MegaMenu = props => {
   const [currentLv2MenuOffset, setCurrentLv2MenuOffset] = useState(0);
 
   const lv0Columns = groupDataToColumns(data);
-  const lv1Columns = groupDataToColumns(
-    lv0Columns[currentLv0ColumnIndex]?.[currentLv0ItemIndex].sub
-  );
-  const lv2Columns = groupDataToColumns(
-    lv1Columns[currentLv1ColumnIndex]?.[currentLv1ItemIndex].sub
-  );
+  const lv1Columns = groupDataToColumns(lv0Columns[currentLv0ColumnIndex]?.[currentLv0ItemIndex].sub);
+  const lv2Columns = groupDataToColumns(lv1Columns[currentLv1ColumnIndex]?.[currentLv1ItemIndex]?.sub);
+
   const wrapperWidth =
     (level0 && calculateWrapperWidth('0', lv0Columns)) ||
     (level1 && calculateWrapperWidth('1', lv1Columns)) ||
@@ -148,8 +143,7 @@ const MegaMenu = props => {
     menuStepReducer(maxLv0MenuPageStep),
     initialMenuPageState
   );
-  const prevLv0Page = () => dispatchLv0MenuPageStep({ type: menuStepActionType.PREV });
-  const nextLv0Page = () => dispatchLv0MenuPageStep({ type: menuStepActionType.NEXT });
+
   const resetLv0Page = () => dispatchLv0MenuPageStep({ type: menuStepActionType.RESET });
   const transformLv0XPosition = (lv0MenuPageStep - 1) * 260;
 
@@ -159,8 +153,7 @@ const MegaMenu = props => {
     menuStepReducer(maxLv1MenuPageStep),
     initialMenuPageState
   );
-  const prevLv1Page = () => dispatchLv1MenuPageStep({ type: menuStepActionType.PREV });
-  const nextLv1Page = () => dispatchLv1MenuPageStep({ type: menuStepActionType.NEXT });
+
   const resetLv1Page = () => dispatchLv1MenuPageStep({ type: menuStepActionType.RESET });
   const transformLv1XPosition = (lv1MenuPageStep - 1) * 260;
 
@@ -170,38 +163,30 @@ const MegaMenu = props => {
     menuStepReducer(maxLv2MenuPageStep),
     initialMenuPageState
   );
-  const prevLv2Page = () => dispatchLv2MenuPageStep({ type: menuStepActionType.PREV });
-  const nextLv2Page = () => dispatchLv2MenuPageStep({ type: menuStepActionType.NEXT });
+
   const resetLv2Page = () => dispatchLv2MenuPageStep({ type: menuStepActionType.RESET });
   const transformLv2XPosition = (lv2MenuPageStep - 1) * 260;
-
-  const showPagination =
-    (level0 && enableLv0MenuPagination) ||
-    (level1 && enableLv1MenuPagination) ||
-    (level2 && enableLv2MenuPagination);
 
   const nested = level1 || level2;
 
   const titleElement = (
-    <Tooltip placement="left" title={title.text}>
-      <div
-        className={classNames(navigationStyled.title, {
-          [navigationStyled.active]: nested,
-        })}
+    <div
+      className={classNames(navigationStyled.title, {
+        [navigationStyled.active]: nested,
+      })}
+    >
+      <ListLink
+        href={title.link}
+        className={classNames(navigationStyled.text)}
+        primary={{ color }}
+        onClick={event => {
+          event.preventDefault();
+          history.push(title.link);
+        }}
       >
-        <ListLink
-          href={title.link}
-          className={classNames(navigationStyled.text)}
-          primary={{ color }}
-          onClick={event => {
-            event.preventDefault();
-            history.push(title.link);
-          }}
-        >
-          {title.text}
-        </ListLink>
-      </div>
-    </Tooltip>
+        {title.text}
+      </ListLink>
+    </div>
   );
 
 
@@ -229,50 +214,7 @@ const MegaMenu = props => {
       })}
       onClick={handleCloseButtonClick}
     >
-      <Image src={CloseGray} className={classNames(navigationStyled.icon)} />
-    </div>
-  );
-
-  const lv0Pagination = (
-    <div
-      className={classNames(navigationStyled.bottom, {
-        [navigationStyled.offset]: nested,
-      })}
-    >
-      <div className={classNames(navigationStyled.page)}>
-        <div className={classNames(navigationStyled.left)} onClick={prevLv0Page} />
-        <span className={classNames(navigationStyled.count)}>
-          <span className={classNames('page-current')}>{lv0MenuPageStep}</span>/
-          <span className={classNames('page-total')}>{maxLv0MenuPageStep}</span>
-        </span>
-        <div className={classNames(navigationStyled.right)} onClick={nextLv0Page} />
-      </div>
-    </div>
-  );
-
-  const lv1Pagination = (
-    <div className={classNames(navigationStyled.bottom, navigationStyled.offset)}>
-      <div className={classNames(navigationStyled.page)}>
-        <div className={classNames(navigationStyled.left)} onClick={prevLv1Page} />
-        <span className={classNames(navigationStyled.count)}>
-          <span className={classNames('page-current')}>{lv1MenuPageStep}</span>/
-          <span className={classNames('page-total')}>{maxLv1MenuPageStep}</span>
-        </span>
-        <div className={classNames(navigationStyled.right)} onClick={nextLv1Page} />
-      </div>
-    </div>
-  );
-
-  const lv2Pagination = (
-    <div className={classNames(navigationStyled.bottom, navigationStyled.offset)}>
-      <div className={classNames(navigationStyled.page)}>
-        <div className={classNames(navigationStyled.left)} onClick={prevLv2Page} />
-        <span className={classNames(navigationStyled.count)}>
-          <span className={classNames('page-current')}>{lv2MenuPageStep}</span>/
-          <span className={classNames('page-total')}>{maxLv2MenuPageStep}</span>
-        </span>
-        <div className={classNames(navigationStyled.right)} onClick={nextLv2Page} />
-      </div>
+      <Icon type="CloseGray" className={classNames(navigationStyled.icon)} />
     </div>
   );
 
@@ -317,33 +259,31 @@ const MegaMenu = props => {
       ? handleLv0ListItemClick(title, link, columnIndex, itemIndex)
       : undefined;
     return (
-      <Tooltip placement="left" title={title}>
-        <li
-          key={`${columnIndex}-${itemIndex}-${link}`}
-          className={classNames(navigationStyled.listItem, {
-            [navigationStyled.hasSub]: hasSub,
-          })}
-          onClick={handleClick}
-        >
-          {hasSub ? (
-            <ListLabel className={classNames(navigationStyled.listLabel)} primary={{ color }}>
-              {title}
-            </ListLabel>
-          ) : (
-            <ListLink
-              href={link}
-              className={classNames(navigationStyled.listLink)}
-              primary={{ color }}
-              onClick={event => {
-                event.preventDefault();
-                history.push(link);
-              }}
-            >
-              {title}
-            </ListLink>
-          )}
-        </li>
-      </Tooltip>
+      <li
+        key={`${columnIndex}-${itemIndex}-${link}`}
+        className={classNames(navigationStyled.listItem, {
+          [navigationStyled.hasSub]: hasSub,
+        })}
+        onClick={handleClick}
+      >
+        {hasSub ? (
+          <ListLabel className={classNames(navigationStyled.listLabel)} primary={{ color }}>
+            {title}
+          </ListLabel>
+        ) : (
+          <ListLink
+            href={link}
+            className={classNames(navigationStyled.listLink)}
+            primary={{ color }}
+            onClick={event => {
+              event.preventDefault();
+              history.push(link);
+            }}
+          >
+            {title}
+          </ListLink>
+        )}
+      </li>
     );
   };
 
@@ -353,33 +293,31 @@ const MegaMenu = props => {
       ? handleCurrentLv1ListItemClick(title, link, columnIndex, itemIndex)
       : undefined;
     return (
-      <Tooltip placement="left" title={title}>
-        <li
-          key={`${columnIndex}-${itemIndex}-${link}`}
-          className={classNames(navigationStyled.listItem, {
-            [navigationStyled.hasSub]: hasSub,
-          })}
-          onClick={handleClick}
-        >
-          {hasSub ? (
-            <ListLabel className={classNames(navigationStyled.listLabel)} primary={{ color }}>
-              {title}
-            </ListLabel>
-          ) : (
-            <ListLink
-              href={link}
-              className={classNames(navigationStyled.listLink)}
-              primary={{ color }}
-              onClick={event => {
-                event.preventDefault();
-                history.push(link);
-              }}
-            >
-              {title}
-            </ListLink>
-          )}
-        </li>
-      </Tooltip>
+      <li
+        key={`${columnIndex}-${itemIndex}-${link}`}
+        className={classNames(navigationStyled.listItem, {
+          [navigationStyled.hasSub]: hasSub,
+        })}
+        onClick={handleClick}
+      >
+        {hasSub ? (
+          <ListLabel className={classNames(navigationStyled.listLabel)} primary={{ color }}>
+            {title}
+          </ListLabel>
+        ) : (
+          <ListLink
+            href={link}
+            className={classNames(navigationStyled.listLink)}
+            primary={{ color }}
+            onClick={event => {
+              event.preventDefault();
+              history.push(link);
+            }}
+          >
+            {title}
+          </ListLink>
+        )}
+      </li>
     );
   };
 
@@ -395,20 +333,7 @@ const MegaMenu = props => {
     </li>
   );
 
-  const lv0Menu = (
-    <>
-      <ul
-        className={classNames(
-          navigationStyled.list,
-          navigationStyled.level,
-          navigationStyled.level0
-        )}
-      >
-        {lv0Columns.map((item, index) => lv0ColumnElement(item, index))}
-      </ul>
-      {lv0Pagination}
-    </>
-  );
+
 
   const lv1ColumnElement = (listItems, columnIndex) => {
     let transform;
@@ -489,7 +414,7 @@ const MegaMenu = props => {
     );
   };
 
-  const currentLv0ColumnElement = listItems => (
+  const currentLvColumnElement = listItems => (
     <li className={classNames(navigationStyled.listColumn, navigationStyled.active)}>
       <ul className={classNames(navigationStyled.list)}>
         {listItems?.map((item, index) => currentLv0ListElement(item, index))}
@@ -497,37 +422,29 @@ const MegaMenu = props => {
     </li>
   );
 
-  const lv1Menu = (
-    <>
-      <ul
-        className={classNames(
-          navigationStyled.list,
-          navigationStyled.level,
-          navigationStyled.level0,
-          navigationStyled.listExpanded
-        )}
-      >
-        {currentLv0ColumnElement(lv0Columns[currentLv0ColumnIndex])}
-      </ul>
-      {lv1Pagination}
-    </>
-  );
-
-  const lv2Menu = (
-    <>
-      <ul
-        className={classNames(
-          navigationStyled.list,
-          navigationStyled.level,
-          navigationStyled.level0,
-          navigationStyled.listExpanded
-        )}
-      >
-        {currentLv0ColumnElement(lv1Columns[currentLv1ColumnIndex])}
-      </ul>
-      {lv2Pagination}
-    </>
-  );
+  const lvMenu = (lvIndex) => {
+    const lvColumns = {
+      '0': lv0Columns.map((item, index) => lv0ColumnElement(item, index)),
+      '1': currentLvColumnElement(lv0Columns[currentLv0ColumnIndex]),
+      '2': currentLvColumnElement(lv1Columns[currentLv1ColumnIndex])
+    };
+    return (
+      <>
+        <ul
+          className={classNames(
+            navigationStyled.list,
+            navigationStyled.level,
+            navigationStyled.level0,
+            {
+              [navigationStyled.listExpanded]: lvIndex === 1
+            }
+          )}
+        >
+          {lvColumns[lvIndex]}
+        </ul>
+      </>
+    )
+  }
 
   return (
     <div
@@ -544,7 +461,6 @@ const MegaMenu = props => {
       <div
         className={classNames(navigationStyled.wrapper, {
           [navigationStyled.dark]: dark,
-          [navigationStyled.paginated]: showPagination,
           [navigationStyled.nested]: nested,
           [navigationStyled.expanded]: nested,
         })}
@@ -552,9 +468,9 @@ const MegaMenu = props => {
       >
         {titleElement}
         {closeButton}
-        {level0 && lv0Menu}
-        {level1 && lv1Menu}
-        {level2 && lv2Menu}
+        {level0 && lvMenu(0)}
+        {level1 && lvMenu(1)}
+        {level2 && lvMenu(2)}
       </div>
     </div>
   );
