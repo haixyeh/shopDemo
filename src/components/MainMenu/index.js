@@ -26,6 +26,12 @@ const MainMenuItemLi = styled.li`
   ${props => props.isBorderBottom && activeCss}
 `;
 
+const handleLink = (link, linkData) => {
+  if (link === '_blank') {
+    window.open(linkData);
+  }
+}
+
 /** MainMenuItem - [主選單子項目] */
 const MainMenuItem = props => {
   const {
@@ -45,7 +51,6 @@ const MainMenuItem = props => {
     newEventList,
     routeMap,
     history,
-    handleLink,
   } = props;
   const link = folderSwitch === 'YES' ? '' : rawLink;
   const dropdownMenu = useDropdownMenu();
@@ -89,7 +94,7 @@ const MainMenuItem = props => {
     break;
   }
   /** 最新消息 */
-  case 'newEventView': {
+  case 'neweventview': {
     hasDropdown = true;
     dropdownEvent = dropdownMenu.bindEvent();
     dropdownElement = (
@@ -193,7 +198,7 @@ MainMenuItem.propTypes = {
   /** 連結類型
    * - `setCategoryView`: 商品分類（folderSwitch 需為 'NO'）
    * - `setCategory`: 末端商品分類
-   * - `newEventView`: 最新消息
+   * - `neweventview`: 最新消息
    * - `空`: 其它項目(需配合傳入 sub)
    * - `其它`: 其它項目(除上述項目外，傳入的 link)
    */
@@ -228,7 +233,7 @@ MainMenuItem.propTypes = {
   /** 高度 */
   height: PropTypes.number,
   /** 最新消息資料(newEventList by the SiteContext)
-   * ### 當 link 為 newEventView 時，需傳入 newEventList
+   * ### 當 link 為 neweventview 時，需傳入 newEventList
    */
   newEventList: PropTypes.array,
   /** 跳轉 route 對應位置 */
@@ -278,7 +283,6 @@ function MainMenu(props) {
     routeMap,
     isMainMenuItemActive,
     history,
-    handleLink,
   } = props;
 
   return (
@@ -351,8 +355,6 @@ MainMenu.propTypes = {
   isMainMenuItemActive: PropTypes.func,
   /** history `umi` or `routes` */
   history: PropTypes.object,
-  /** 跳轉連結處理 */
-  handleLink: PropTypes.func,
 };
 
 MainMenu.defaultProps = {
@@ -370,7 +372,6 @@ MainMenu.defaultProps = {
   routeMap: {},
   isMainMenuItemActive: () => false,
   history: {},
-  handleLink: () => {},
 };
 
 export default withRouter(MainMenu);
