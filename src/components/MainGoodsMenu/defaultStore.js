@@ -238,14 +238,21 @@ export const mainMenuDefault = [
                   },
                   {
                     title: 'ONEDER旺達',
-                    url: '/category/69',
+                    url: '/category/71',
                     link: 'setCategory',
                     linkData: '69',
                     sub: [],
                   },
                   {
                     title: 'Aaron1982',
-                    url: '/category/71',
+                    url: '/category/72',
+                    link: 'setCategory',
+                    linkData: '71',
+                    sub: [],
+                  },
+                  {
+                    title: 'Aaron1982',
+                    url: '/category/74',
                     link: 'setCategory',
                     linkData: '71',
                     sub: [],

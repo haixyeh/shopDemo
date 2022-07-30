@@ -1,6 +1,7 @@
 @import '../../less/common.less';
 
 .navigate {
+  position: relative;
   display: none;
   ul,
   li {
@@ -23,6 +24,18 @@
     color: #4c4c4c;
     background: #fff;
     box-shadow: @modal-window-box-shadow;
+    .lockIcon {
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+      margin: 0 auto;
+      width: 16px;
+      height: 16px;
+      z-index: 999;
+      &.isLock {
+        color: red;
+      }
+    }
     &.dark {
       color: #fff;
       background: #000;

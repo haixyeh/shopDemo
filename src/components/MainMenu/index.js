@@ -3,7 +3,7 @@ import { withRouter } from 'dva/router';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import styled, { css } from 'styled-components';
-import Icon from '../Icon';
+import SVGIcon from '../SVGIcon';
 import Navigation from './Navigation';
 import MegaMenu from './MegaMenu';
 import useDropdownMenu from '../../utils/useDropdownMenu';
@@ -76,7 +76,7 @@ const MainMenuItem = props => {
     dropdownEvent = dropdownMenu.bindEvent();
     dropdownElement = (
       <>
-        <Icon
+        <SVGIcon
           type="MenuDropdownArrow"
           className={mainMenuStyled.dropdownArrow}
           color={colorSetting}
@@ -86,8 +86,8 @@ const MainMenuItem = props => {
           dark={subMenuDark}
           color={textHoverColor}
           data={setCategoryViewData}
-          {...dropdownMenu.bindDropdownMenu()}
           history={history}
+          {...dropdownMenu.bindDropdownMenu()}
         />
       </>
     );
@@ -99,7 +99,7 @@ const MainMenuItem = props => {
     dropdownEvent = dropdownMenu.bindEvent();
     dropdownElement = (
       <>
-        <Icon
+        <SVGIcon
           type="MenuDropdownArrow"
           className={mainMenuStyled.dropdownArrow}
           color={colorSetting}
@@ -127,7 +127,7 @@ const MainMenuItem = props => {
     // header 資料裡面的 sub 資料
     dropdownElement = (
       <>
-        <Icon
+        <SVGIcon
           type="MenuDropdownArrow"
           className={mainMenuStyled.dropdownArrow}
           color={colorSetting}

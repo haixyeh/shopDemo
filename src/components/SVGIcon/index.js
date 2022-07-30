@@ -15,7 +15,7 @@ const IconElement = {
   )
 };
 
-const Icon = props => {
+const SVGIcon = props => {
   const { type, color, ...restProps } = props;
   if (color) restProps.fill = color;
 
@@ -23,13 +23,13 @@ const Icon = props => {
   return Component ? <Component {...restProps} /> : null;
 };
 
-Icon.propTypes = {
+SVGIcon.propTypes = {
   type: PropTypes.string.isRequired,
   color: PropTypes.string
 }
 
-Icon.defaultProps = {
+SVGIcon.defaultProps = {
   color: null
 }
 
-export default Icon;
+export default SVGIcon;

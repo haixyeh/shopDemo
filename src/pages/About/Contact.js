@@ -9,6 +9,7 @@ const Index = ({routes, app}) => {
       <p>聯繫我們</p>
       <div>
         <Link to="/about/contact/phone">電話</Link>
+        &nbsp;|&nbsp;
         <Link to="/about/contact/address">地址</Link>
       </div>
       <div>

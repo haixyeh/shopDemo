@@ -15596,7 +15596,7 @@ var FormItem_FormItem = /*#__PURE__*/function (_React$Component) {
 
       var icon = props.hasFeedback && iconType ? /*#__PURE__*/react["createElement"]("span", {
         className: "".concat(prefixCls, "-item-children-icon")
-      }, /*#__PURE__*/react["createElement"](es_icon["a" /* default */], {
+      }, /*#__PURE__*/react["createElement"](es_icon["default"], {
         type: iconType,
         theme: iconType === 'loading' ? 'outlined' : 'filled'
       })) : null;
@@ -16570,7 +16570,7 @@ var ClearableLabeledInput_ClearableLabeledInput = /*#__PURE__*/function (_React$
       }
 
       var className = inputType === ClearableInputType[0] ? "".concat(prefixCls, "-textarea-clear-icon") : "".concat(prefixCls, "-clear-icon");
-      return /*#__PURE__*/react["createElement"](es_icon["a" /* default */], {
+      return /*#__PURE__*/react["createElement"](es_icon["default"], {
         type: "close-circle",
         theme: "filled",
         onClick: handleReset,
@@ -17125,12 +17125,12 @@ var Search_Search = /*#__PURE__*/function (_React$Component) {
           type: "primary",
           size: size,
           key: "enterButton"
-        }, /*#__PURE__*/react["createElement"](es_icon["a" /* default */], {
+        }, /*#__PURE__*/react["createElement"](es_icon["default"], {
           type: "loading"
         }));
       }
 
-      return /*#__PURE__*/react["createElement"](es_icon["a" /* default */], {
+      return /*#__PURE__*/react["createElement"](es_icon["default"], {
         className: "".concat(prefixCls, "-icon"),
         type: "loading",
         key: "loadingIcon"
@@ -17148,7 +17148,7 @@ var Search_Search = /*#__PURE__*/function (_React$Component) {
       }
 
       if (enterButton) return suffix;
-      var icon = /*#__PURE__*/react["createElement"](es_icon["a" /* default */], {
+      var icon = /*#__PURE__*/react["createElement"](es_icon["default"], {
         className: "".concat(prefixCls, "-icon"),
         type: "search",
         key: "searchIcon",
@@ -17198,7 +17198,7 @@ var Search_Search = /*#__PURE__*/function (_React$Component) {
           disabled: disabled,
           key: "enterButton",
           onClick: _this.onSearch
-        }, enterButton === true ? /*#__PURE__*/react["createElement"](es_icon["a" /* default */], {
+        }, enterButton === true ? /*#__PURE__*/react["createElement"](es_icon["default"], {
           type: "search"
         }) : enterButton);
       }
@@ -17830,7 +17830,7 @@ var Password_Password = /*#__PURE__*/function (_React$Component) {
         // https://github.com/ant-design/ant-design/issues/15173
         e.preventDefault();
       }), _iconProps);
-      return /*#__PURE__*/react["createElement"](es_icon["a" /* default */], iconProps);
+      return /*#__PURE__*/react["createElement"](es_icon["default"], iconProps);
     }
   }, {
     key: "focus",
@@ -22605,6 +22605,7 @@ exports['default'] = required;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 // EXTERNAL MODULE: ./node_modules/react/index.js
 var react = __webpack_require__("GiK3");
@@ -23077,7 +23078,7 @@ var icon_Icon = function Icon(props) {
 icon_Icon.createFromIconfontCN = create;
 icon_Icon.getTwoToneColor = getTwoToneColor;
 icon_Icon.setTwoToneColor = setTwoToneColor;
-/* harmony default export */ var es_icon = __webpack_exports__["a"] = (icon_Icon);
+/* harmony default export */ var es_icon = __webpack_exports__["default"] = (icon_Icon);
 
 /***/ }),
 
@@ -24825,7 +24826,7 @@ var dropdown_Dropdown = /*#__PURE__*/function (_React$Component) {
           focusable = _overlayProps$focusab === void 0 ? true : _overlayProps$focusab;
       var expandIcon = /*#__PURE__*/react["createElement"]("span", {
         className: "".concat(prefixCls, "-menu-submenu-arrow")
-      }, /*#__PURE__*/react["createElement"](es_icon["a" /* default */], {
+      }, /*#__PURE__*/react["createElement"](es_icon["default"], {
         type: "right",
         className: "".concat(prefixCls, "-menu-submenu-arrow-icon")
       }));
@@ -24992,7 +24993,7 @@ var dropdown_button_DropdownButton = /*#__PURE__*/function (_React$Component) {
           getPopupContainer = _a.getPopupContainer,
           href = _a.href,
           _a$icon = _a.icon,
-          icon = _a$icon === void 0 ? /*#__PURE__*/react["createElement"](es_icon["a" /* default */], {
+          icon = _a$icon === void 0 ? /*#__PURE__*/react["createElement"](es_icon["default"], {
         type: "ellipsis"
       }) : _a$icon,
           title = _a.title,
@@ -26399,7 +26400,7 @@ var filterDropdown_FilterMenu = /*#__PURE__*/function (_React$Component) {
       var dropdownIconClass = classnames_default()((_classNames = {}, filterDropdown__defineProperty(_classNames, "".concat(prefixCls, "-selected"), 'filtered' in column ? column.filtered : filtered), filterDropdown__defineProperty(_classNames, "".concat(prefixCls, "-open"), _this.getDropdownVisible()), _classNames));
 
       if (!filterIcon) {
-        return /*#__PURE__*/react["createElement"](es_icon["a" /* default */], {
+        return /*#__PURE__*/react["createElement"](es_icon["default"], {
           title: locale.filterTitle,
           type: "filter",
           theme: "filled",
@@ -27032,7 +27033,7 @@ var SelectionCheckboxAll_SelectionCheckboxAll = /*#__PURE__*/function (_React$Co
           getPopupContainer: getPopupContainer
         }, /*#__PURE__*/react["createElement"]("div", {
           className: "".concat(selectionPrefixCls, "-down")
-        }, /*#__PURE__*/react["createElement"](es_icon["a" /* default */], {
+        }, /*#__PURE__*/react["createElement"](es_icon["default"], {
           type: "down"
         }))) : null;
       }
@@ -31065,20 +31066,20 @@ var select_Select = /*#__PURE__*/function (_React$Component) {
       };
       var finalRemoveIcon = removeIcon && ( /*#__PURE__*/react["isValidElement"](removeIcon) ? /*#__PURE__*/react["cloneElement"](removeIcon, {
         className: classnames_default()(removeIcon.props.className, "".concat(prefixCls, "-remove-icon"))
-      }) : removeIcon) || /*#__PURE__*/react["createElement"](es_icon["a" /* default */], {
+      }) : removeIcon) || /*#__PURE__*/react["createElement"](es_icon["default"], {
         type: "close",
         className: "".concat(prefixCls, "-remove-icon")
       });
       var finalClearIcon = clearIcon && ( /*#__PURE__*/react["isValidElement"](clearIcon) ? /*#__PURE__*/react["cloneElement"](clearIcon, {
         className: classnames_default()(clearIcon.props.className, "".concat(prefixCls, "-clear-icon"))
-      }) : clearIcon) || /*#__PURE__*/react["createElement"](es_icon["a" /* default */], {
+      }) : clearIcon) || /*#__PURE__*/react["createElement"](es_icon["default"], {
         type: "close-circle",
         theme: "filled",
         className: "".concat(prefixCls, "-clear-icon")
       });
       var finalMenuItemSelectedIcon = menuItemSelectedIcon && ( /*#__PURE__*/react["isValidElement"](menuItemSelectedIcon) ? /*#__PURE__*/react["cloneElement"](menuItemSelectedIcon, {
         className: classnames_default()(menuItemSelectedIcon.props.className, "".concat(prefixCls, "-selected-icon"))
-      }) : menuItemSelectedIcon) || /*#__PURE__*/react["createElement"](es_icon["a" /* default */], {
+      }) : menuItemSelectedIcon) || /*#__PURE__*/react["createElement"](es_icon["default"], {
         type: "check",
         className: "".concat(prefixCls, "-selected-icon")
       });
@@ -31147,12 +31148,12 @@ var select_Select = /*#__PURE__*/function (_React$Component) {
       }
 
       if (loading) {
-        return /*#__PURE__*/react["createElement"](es_icon["a" /* default */], {
+        return /*#__PURE__*/react["createElement"](es_icon["default"], {
           type: "loading"
         });
       }
 
-      return /*#__PURE__*/react["createElement"](es_icon["a" /* default */], {
+      return /*#__PURE__*/react["createElement"](es_icon["default"], {
         type: "down",
         className: "".concat(prefixCls, "-arrow-icon")
       });
@@ -31296,19 +31297,19 @@ var pagination_Pagination_Pagination = /*#__PURE__*/function (_React$Component) 
     _this.getIconsProps = function (prefixCls) {
       var prevIcon = /*#__PURE__*/react["createElement"]("a", {
         className: "".concat(prefixCls, "-item-link")
-      }, /*#__PURE__*/react["createElement"](es_icon["a" /* default */], {
+      }, /*#__PURE__*/react["createElement"](es_icon["default"], {
         type: "left"
       }));
       var nextIcon = /*#__PURE__*/react["createElement"]("a", {
         className: "".concat(prefixCls, "-item-link")
-      }, /*#__PURE__*/react["createElement"](es_icon["a" /* default */], {
+      }, /*#__PURE__*/react["createElement"](es_icon["default"], {
         type: "right"
       }));
       var jumpPrevIcon = /*#__PURE__*/react["createElement"]("a", {
         className: "".concat(prefixCls, "-item-link")
       }, /*#__PURE__*/react["createElement"]("div", {
         className: "".concat(prefixCls, "-item-container")
-      }, /*#__PURE__*/react["createElement"](es_icon["a" /* default */], {
+      }, /*#__PURE__*/react["createElement"](es_icon["default"], {
         className: "".concat(prefixCls, "-item-link-icon"),
         type: "double-left"
       }), /*#__PURE__*/react["createElement"]("span", {
@@ -31318,7 +31319,7 @@ var pagination_Pagination_Pagination = /*#__PURE__*/function (_React$Component) 
         className: "".concat(prefixCls, "-item-link")
       }, /*#__PURE__*/react["createElement"]("div", {
         className: "".concat(prefixCls, "-item-container")
-      }, /*#__PURE__*/react["createElement"](es_icon["a" /* default */], {
+      }, /*#__PURE__*/react["createElement"](es_icon["default"], {
         className: "".concat(prefixCls, "-item-link-icon"),
         type: "double-right"
       }), /*#__PURE__*/react["createElement"]("span", {
@@ -33039,12 +33040,12 @@ var Table_Table = /*#__PURE__*/function (_React$Component) {
           var sortDirections = column.sortDirections || _this7.props.sortDirections;
           var isAscend = isSortColumn && sortOrder === 'ascend';
           var isDescend = isSortColumn && sortOrder === 'descend';
-          var ascend = sortDirections.indexOf('ascend') !== -1 && /*#__PURE__*/react["createElement"](es_icon["a" /* default */], {
+          var ascend = sortDirections.indexOf('ascend') !== -1 && /*#__PURE__*/react["createElement"](es_icon["default"], {
             className: "".concat(prefixCls, "-column-sorter-up ").concat(isAscend ? 'on' : 'off'),
             type: "caret-up",
             theme: "filled"
           });
-          var descend = sortDirections.indexOf('descend') !== -1 && /*#__PURE__*/react["createElement"](es_icon["a" /* default */], {
+          var descend = sortDirections.indexOf('descend') !== -1 && /*#__PURE__*/react["createElement"](es_icon["default"], {
             className: "".concat(prefixCls, "-column-sorter-down ").concat(isDescend ? 'on' : 'off'),
             type: "caret-down",
             theme: "filled"
@@ -72006,18 +72007,18 @@ var Sider_InternalSider = /*#__PURE__*/function (_React$Component) {
         onClick: _this.toggle,
         className: "".concat(prefixCls, "-zero-width-trigger ").concat(prefixCls, "-zero-width-trigger-").concat(reverseArrow ? 'right' : 'left'),
         style: zeroWidthTriggerStyle
-      }, /*#__PURE__*/react["createElement"](icon["a" /* default */], {
+      }, /*#__PURE__*/react["createElement"](icon["default"], {
         type: "bars"
       })) : null;
       var iconObj = {
-        expanded: reverseArrow ? /*#__PURE__*/react["createElement"](icon["a" /* default */], {
+        expanded: reverseArrow ? /*#__PURE__*/react["createElement"](icon["default"], {
           type: "right"
-        }) : /*#__PURE__*/react["createElement"](icon["a" /* default */], {
+        }) : /*#__PURE__*/react["createElement"](icon["default"], {
           type: "left"
         }),
-        collapsed: reverseArrow ? /*#__PURE__*/react["createElement"](icon["a" /* default */], {
+        collapsed: reverseArrow ? /*#__PURE__*/react["createElement"](icon["default"], {
           type: "left"
-        }) : /*#__PURE__*/react["createElement"](icon["a" /* default */], {
+        }) : /*#__PURE__*/react["createElement"](icon["default"], {
           type: "right"
         })
       };
@@ -75828,7 +75829,7 @@ var button_Button = /*#__PURE__*/function (_React$Component) {
 
       var iconType = loading ? 'loading' : icon;
       var classes = classnames_default()(prefixCls, className, (_classNames = {}, _defineProperty(_classNames, "".concat(prefixCls, "-").concat(type), type), _defineProperty(_classNames, "".concat(prefixCls, "-").concat(shape), shape), _defineProperty(_classNames, "".concat(prefixCls, "-").concat(sizeCls), sizeCls), _defineProperty(_classNames, "".concat(prefixCls, "-icon-only"), !children && children !== 0 && iconType), _defineProperty(_classNames, "".concat(prefixCls, "-loading"), !!loading), _defineProperty(_classNames, "".concat(prefixCls, "-background-ghost"), ghost), _defineProperty(_classNames, "".concat(prefixCls, "-two-chinese-chars"), hasTwoCNChar && autoInsertSpace), _defineProperty(_classNames, "".concat(prefixCls, "-block"), block), _classNames));
-      var iconNode = iconType ? /*#__PURE__*/react["createElement"](es_icon["a" /* default */], {
+      var iconNode = iconType ? /*#__PURE__*/react["createElement"](es_icon["default"], {
         type: iconType
       }) : null;
       var kids = children || children === 0 ? spaceChildren(children, _this.isNeedInserted() && autoInsertSpace) : null;

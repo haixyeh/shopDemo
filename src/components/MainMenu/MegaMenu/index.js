@@ -2,11 +2,12 @@
 import React, { useState, useReducer } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { Icon } from 'antd';
 import chunk from 'lodash/chunk';
 import classNames from 'classnames';
 import { createMachine } from '@xstate/fsm';
 import { useMachine } from '@xstate/react/lib/fsm';
-import Icon from '../../Icon';
+import SVGIcon from '../../SVGIcon';
 import navigationStyled from '../navigate.less';
 
 const ListLabel = styled.span`
@@ -113,6 +114,7 @@ const menuStepReducer = maxPageStep => (currentStep, action) => {
 /** MegaMenu - [下拉選單(連結) 多層級子項目] */
 const MegaMenu = props => {
   const { dark, color, data, onClose, className, active, history } = props; // NOTE: active 為 workaround
+  const [lock, setLock] = useState(false);
   const [title, setTitle] = useState({ text: '', link: '' });
 
   const [levelState, send] = useMachine(levelMachine);
@@ -202,6 +204,9 @@ const MegaMenu = props => {
   };
 
   const handleOnClose = () => {
+    if (lock) {
+      return;
+    }
     resetPagination();
     send(levelEventEnum.RESET);
     if (onClose) onClose();
@@ -214,7 +219,7 @@ const MegaMenu = props => {
       })}
       onClick={handleCloseButtonClick}
     >
-      <Icon type="CloseGray" className={classNames(navigationStyled.icon)} />
+      <SVGIcon type="CloseGray" className={classNames(navigationStyled.icon)} />
     </div>
   );
 
@@ -369,12 +374,14 @@ const MegaMenu = props => {
       active = itemIndex === currentLv1ItemIndex;
       childMenu = lv2Columns;
     }
+
     const handleClick = hasSub
       ? handleCurrentLv0ListItemClick(title, link, currentLevelColumnIndex, itemIndex)
       : undefined;
+
     return (
       <li
-        key={`${currentLv0ColumnIndex}-${itemIndex}-${link}`}
+        key={`${currentLv0ColumnIndex}-${itemIndex}-${link}-${JSON.stringify(lv2Columns)}`}
         className={classNames(navigationStyled.listItem, {
           [navigationStyled.hasSub]: hasSub,
           [navigationStyled.active]: active,
@@ -436,7 +443,7 @@ const MegaMenu = props => {
             navigationStyled.level,
             navigationStyled.level0,
             {
-              [navigationStyled.listExpanded]: lvIndex === 1
+              [navigationStyled.listExpanded]: lvIndex !== 0
             }
           )}
         >
@@ -452,7 +459,7 @@ const MegaMenu = props => {
         navigationStyled.navigate,
         navigationStyled.mega,
         {
-          [navigationStyled.active]: active, // NOTE: workaround
+          [navigationStyled.active]: active || lock, // NOTE: workaround
         },
         className
       )}
@@ -466,11 +473,20 @@ const MegaMenu = props => {
         })}
         style={{ width: wrapperWidth }}
       >
+        
         {titleElement}
         {closeButton}
         {level0 && lvMenu(0)}
         {level1 && lvMenu(1)}
         {level2 && lvMenu(2)}
+        <Icon
+          type={lock ? 'lock' : 'unlock'}
+          className={
+            classNames(navigationStyled.lockIcon, {
+              [navigationStyled.isLock]: !!lock
+            })}
+          onClick={() => setLock(!lock)}
+        />
       </div>
     </div>
   );
