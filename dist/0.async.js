@@ -36494,7 +36494,6 @@ module.exports = debounce;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 // EXTERNAL MODULE: ./node_modules/react/index.js
 var react = __webpack_require__("GiK3");
@@ -37167,7 +37166,7 @@ tooltip_Tooltip.defaultProps = {
   autoAdjustOverflow: true
 };
 Object(react_lifecycles_compat_es["polyfill"])(tooltip_Tooltip);
-/* harmony default export */ var tooltip = __webpack_exports__["default"] = (tooltip_Tooltip);
+/* harmony default export */ var tooltip = __webpack_exports__["a"] = (tooltip_Tooltip);
 
 /***/ }),
 
@@ -50393,7 +50392,7 @@ var MenuItem_MenuItem = /*#__PURE__*/function (_React$Component) {
           tooltipProps.visible = false;
         }
 
-        return /*#__PURE__*/react["createElement"](tooltip["default"], MenuItem__extends({}, tooltipProps, {
+        return /*#__PURE__*/react["createElement"](tooltip["a" /* default */], MenuItem__extends({}, tooltipProps, {
           placement: "right",
           overlayClassName: "".concat(rootPrefixCls, "-inline-collapsed-tooltip")
         }), /*#__PURE__*/react["createElement"](es["b" /* Item */], MenuItem__extends({}, rest, {
@@ -69802,7 +69801,7 @@ var Popover = /*#__PURE__*/function (_React$Component) {
 
       delete props.title;
       var prefixCls = getPrefixCls('popover', customizePrefixCls);
-      return /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_1__tooltip__["default"], _extends({}, props, {
+      return /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_1__tooltip__["a" /* default */], _extends({}, props, {
         prefixCls: prefixCls,
         ref: _this.saveTooltip,
         overlay: _this.getOverlay(prefixCls)

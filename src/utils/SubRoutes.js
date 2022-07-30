@@ -12,7 +12,6 @@ const dynamicCom = (app, models, component, routes, isAuthority, userInfo) =>
     models: () => models,
     component: () =>
       component().then(res => {
-        // console.log(isAuthority);
         if (isAuthority) {
           // 判断userInfo.id 是否有内容
           if (!userInfo.key || !userInfo.email) {
@@ -20,13 +19,16 @@ const dynamicCom = (app, models, component, routes, isAuthority, userInfo) =>
           }
         }
         const Component = res.default || res;
-        return props => <Component {...props} app={app} routes={routes} />;
+        return props =>{
+          return <Component {...props} app={app} routes={routes} />
+        };
       })
   });
 
-function SubRoutes({ routes, component, app, model, isAuthority, userInfo }) {
+function SubRoutes({ path, routes, component, app, model, isAuthority, userInfo }) {
   return (
     <Route
+      path={path}
       component={dynamicCom(
         app,
         model,

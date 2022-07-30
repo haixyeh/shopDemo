@@ -171,7 +171,7 @@ const MainMenuItem = props => {
           onClick={event => {
             event.preventDefault();
             if (routeMap[link]) {
-              history.push(routeMap[link]);
+              history.push(`/${routeMap[link]}`);
             }
             handleLink(link, linkData, linkDetail);
           }}

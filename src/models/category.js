@@ -2,10 +2,10 @@
 import { delay } from 'redux-saga';
 
 export default {
-  namespace: 'webSet',
+  namespace: 'category',
   state: {
     name: 'Ryan',
-    text: "this is the home Components",
+    text: "Category",
     count: 0,
     loading: false
   },

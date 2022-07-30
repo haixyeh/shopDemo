@@ -19,9 +19,9 @@ const RouteConfig = [
         isAuthority
       },
       {
-        path: '/webSet',
-        component: () => import('./pages/WebSet'),
-        model: [import('./models/webSet')],
+        path: '/category/:id',
+        component: () => import('./pages/Category'),
+        model: [import('./models/category')],
         redirect: true,
         isAuthority
       },
@@ -43,11 +43,6 @@ const RouteConfig = [
         model: [],
         routes: [
           {
-            path: '/about/history',
-            model: [],
-            component: () => import('./pages/About/History')
-          },
-          {
             path: '/about/contact',
             model: [],
             component: () => import('./pages/About/Contact'),
@@ -65,14 +60,19 @@ const RouteConfig = [
             ]
           },
           {
+            path: '/about/history',
+            model: [],
+            component: () => import('./pages/About/History')
+          },
+          {
             path: '/about/orderingguide',
             model: [],
             component: () => import('./pages/About/OrderingGuide')
           },
           {
-            path: '/about/delivery',
+            path: '/about/event',
             model: [],
-            component: () => import('./pages/About/Delivery')
+            component: () => import('./pages/About/Event')
           }
         ]
       },

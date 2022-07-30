@@ -5,7 +5,7 @@ export default {
   namespace: 'menus',
   state: {
     name: 'Ryan',
-    text: "this is the home Components",
+    text: "Category",
     count: 0,
     loading: false
   },

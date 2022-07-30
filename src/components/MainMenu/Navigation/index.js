@@ -1,5 +1,4 @@
 import React from 'react';
-import { Tooltip } from 'antd';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -30,45 +29,40 @@ const NavigationItem = props => {
   } = props;
 
   let listItem = (
-    <Tooltip placement="left" title={title}>
-      <li className={classNames(navigationStyled.listItem)}>
-        <ListLink
-          href={`/event/${linkData}`}
-          className={navigationStyled.listLink}
-          primary={{ color }}
-          onClick={event => {
-            event.preventDefault();
-            history.push(`/event/${linkData}`);
-          }}
-        >
-          {title}
-        </ListLink>
-      </li>
-    </Tooltip>
+    <li className={classNames(navigationStyled.listItem)}>
+      <ListLink
+        href={`/event/${linkData}`}
+        className={navigationStyled.listLink}
+        primary={{ color }}
+        onClick={event => {
+          event.preventDefault();
+          history.push(`/event/${linkData}`);
+        }}
+      >
+        {title}
+      </ListLink>
+    </li>
   );
 
   if (listKey === 'subId') {
     listItem = (
-      <Tooltip placement="left" title={title}>
-        <li className={classNames(navigationStyled.listItem)}>
-          <ListLink
-            href={routeMap[link]}
-            className={navigationStyled.listLink}
-            primary={{ color }}
-            onClick={event => {
-              event.preventDefault();
-              if (routeMap[link]) {
-                history.push(routeMap[link]);
-              }
-              handleLink(link, linkData, linkDetail);
-            }}
-          >
+      <li className={classNames(navigationStyled.listItem)}>
+        <ListLink
+          href={routeMap[link]}
+          className={navigationStyled.listLink}
+          primary={{ color }}
+          onClick={event => {
+            event.preventDefault();
+            if (routeMap[link]) {
+              history.push(routeMap[link]);
+            }
+            handleLink(link, linkData, linkDetail);
+          }}
+        >
           
-            {title}
-          </ListLink>
-        </li>
-      </Tooltip>
-
+          {title}
+        </ListLink>
+      </li>
     );
   }
 
@@ -161,12 +155,12 @@ const Navigation = props => {
                 )}
               >
                 <ListLink
-                  href="/events"
+                  // href="/about/events"
                   className={navigationStyled.listLink}
                   primary={{ color }}
                   onClick={event => {
                     event.preventDefault();
-                    history.push('/events');
+                    history.push('/about/events');
                   }}
                 >
                   所有最新活動
