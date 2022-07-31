@@ -338,8 +338,6 @@ const MegaMenu = props => {
     </li>
   );
 
-
-
   const lv1ColumnElement = (listItems, columnIndex) => {
     let transform;
     if (level1) transform = transformLv1XPosition;

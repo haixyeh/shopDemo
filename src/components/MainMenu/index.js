@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { withRouter } from 'dva/router';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -48,90 +48,34 @@ const MainMenuItem = props => {
     sub,
     height,
     transparent,
-    newEventList,
     routeMap,
     history,
   } = props;
   const link = folderSwitch === 'YES' ? '' : rawLink;
-  const dropdownMenu = useDropdownMenu();
-  let setCategoryViewData;
-  if (rawLink === 'setCategoryView') {
-    setCategoryViewData =
-      linkData === '0' ? linkDetail?.data?.list : linkDetail?.data?.list[0]?.sub;
-  }
+  const { bindEvent, bindDropdownMenu } = useDropdownMenu();
+  const categoryViewData = linkData === '0' ? linkDetail?.data?.list : linkDetail?.data?.list[0]?.sub
 
   // const {
   //   mainMenuStyle: { textImgColor },
-  // } = useTheme();
+  // } = useTheme();  // 共用色系色定後續補上
 
-  const colorSetting = transparent ? '#fff' : color;
-
-  let hasDropdown = false;
-  let dropdownEvent = null;
-  let dropdownElement = null;
-  switch (link) {
-  /** 商品分類 */
-  case 'setCategoryView': {
-    hasDropdown = true;
-    dropdownEvent = dropdownMenu.bindEvent();
-    dropdownElement = (
-      <>
-        <SVGIcon
-          type="MenuDropdownArrow"
-          className={mainMenuStyled.dropdownArrow}
-          color={colorSetting}
-        />
+  const primaryColor = transparent ? '#fff' : color;    // 主要色系
+  const [hasDropdown, setHasDropdown] = useState(true); // 是否有下拉狀態
+  const [dropdownEvent, setDropdownEvent] = useState(bindEvent());
+  const dropdownElementMap = useMemo(() => (
+    {
+      // 商品分類
+      'setCategoryView': (
         <MegaMenu
           className={classNames(mainMenuStyled.subMenu)}
           dark={subMenuDark}
           color={textHoverColor}
-          data={setCategoryViewData}
+          data={categoryViewData}
           history={history}
-          {...dropdownMenu.bindDropdownMenu()}
-        />
-      </>
-    );
-    break;
-  }
-  /** 最新消息 */
-  case 'neweventview': {
-    hasDropdown = true;
-    dropdownEvent = dropdownMenu.bindEvent();
-    dropdownElement = (
-      <>
-        <SVGIcon
-          type="MenuDropdownArrow"
-          className={mainMenuStyled.dropdownArrow}
-          color={colorSetting}
-        />
-        <Navigation
-          className={classNames(mainMenuStyled.subMenu)}
-          dark={subMenuDark}
-          color={textHoverColor}
-          list={newEventList}
-          listKey="mainId"
-          showMore
-          routeMap={routeMap}
-          history={history}
-          handleLink={handleLink}
-          {...dropdownMenu.bindDropdownMenu()}
-        />
-      </>
-    );
-    break;
-  }
-  /** 有子選項 */
-  case '': {
-    hasDropdown = true;
-    dropdownEvent = dropdownMenu.bindEvent();
-    // header 資料裡面的 sub 資料
-    dropdownElement = (
-      <>
-        <SVGIcon
-          type="MenuDropdownArrow"
-          className={mainMenuStyled.dropdownArrow}
-          color={colorSetting}
-        />
+          {...bindDropdownMenu()}
+        />),
+      // 其它子選項
+      '': (
         <Navigation
           className={classNames(mainMenuStyled.subMenu)}
           dark={subMenuDark}
@@ -141,25 +85,40 @@ const MainMenuItem = props => {
           routeMap={routeMap}
           history={history}
           handleLink={handleLink}
-          {...dropdownMenu.bindDropdownMenu()}
+          {...bindDropdownMenu()}
         />
-      </>
-    );
-    break;
-  }
-  default:
-    hasDropdown = false;
-    break;
-  }
+      )
+    }
+  ), [categoryViewData, history, routeMap, subMenuDark, sub, textHoverColor, bindDropdownMenu]);
+
+  useEffect(() => {
+    if (!dropdownElementMap[link]) {
+      setHasDropdown(false);
+      setDropdownEvent(null);
+    }
+  }, [link, dropdownElementMap]);
+
+  const dropdownElement = useMemo(() => (
+    <>
+      {hasDropdown && (
+        <SVGIcon
+          type="MenuDropdownArrow"
+          className={mainMenuStyled.dropdownArrow}
+          color={primaryColor}
+        />
+      )}
+      {dropdownElementMap[link]}
+    </>
+  ), [dropdownElementMap, hasDropdown, link, primaryColor]);
 
   return (
     <MainMenuItemLi
-      color={colorSetting}
-      isBorderBottom={isBorderBottom}
       className={classNames(mainMenuStyled.item, {
         [mainMenuStyled.dropdown]: hasDropdown,
         active: isCurrent,
       })}
+      isBorderBottom={isBorderBottom}
+      color={primaryColor}
       {...dropdownEvent}
     >
       {hasDropdown && <span style={{ lineHeight: `${height}px` }}>{title}</span>}
@@ -197,10 +156,7 @@ MainMenuItem.propTypes = {
   title: PropTypes.string,
   /** 連結類型
    * - `setCategoryView`: 商品分類（folderSwitch 需為 'NO'）
-   * - `setCategory`: 末端商品分類
-   * - `neweventview`: 最新消息
    * - `空`: 其它項目(需配合傳入 sub)
-   * - `其它`: 其它項目(除上述項目外，傳入的 link)
    */
   link: PropTypes.string,
   /** 連結的相關資料: 連結商品編號，為0則為全部商品連結，為空則為非商品連結  */
@@ -233,7 +189,7 @@ MainMenuItem.propTypes = {
   /** 高度 */
   height: PropTypes.number,
   /** 最新消息資料(newEventList by the SiteContext)
-   * ### 當 link 為 neweventview 時，需傳入 newEventList
+   * ### 當 link 為 newEventview 時，需傳入 newEventList
    */
   newEventList: PropTypes.array,
   /** 跳轉 route 對應位置 */
