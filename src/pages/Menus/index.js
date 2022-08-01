@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'dva';
 import { Button, Input } from 'antd';
 import style from './index.less';
@@ -72,5 +73,20 @@ const mapStateToProps = (state) => {
     loading: state.menus.loading
   }
 }
+
+Menus.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  text: PropTypes.string,
+  name: PropTypes.string,
+  count: PropTypes.number,
+  loading: PropTypes.bool
+};
+
+Menus.defaultProps = {
+  text: '',
+  name: '',
+  count: 0,
+  loading: false
+};
 
 export default connect(mapStateToProps)(Menus);

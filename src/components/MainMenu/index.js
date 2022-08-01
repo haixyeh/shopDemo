@@ -9,21 +9,21 @@ import MegaMenu from './MegaMenu';
 import useDropdownMenu from '../../utils/useDropdownMenu';
 import mainMenuStyled from './mainMenu.less';
 
-const activeCss = css`
+const activeBottomBorderCss = css`
   &&.active {
-    border-bottom-color: ${props => props.color};
+    border-bottom-color: ${props => props.theme?.primaryColor};
   }
   &&&:hover {
-    border-bottom-color: ${props => props.color};
+    border-bottom-color: ${props => props.theme?.primaryColor };
   }
 `;
 
 const MainMenuItemLi = styled.li`
-  color: ${props => props.color};
-  ${mainMenuStyled.dropdownArrow} {
-    fill: ${props => props.color};
+  color: ${props => props.color || props.theme?.primaryColorText };
+  ${props => props.isBorderBottom && activeBottomBorderCss}
+  ${mainMenuStyled.menuDropdownArrow} {
+    fill: ${props => props.theme?.menuDropdownArrow || props.theme?.primaryColor };
   }
-  ${props => props.isBorderBottom && activeCss}
 `;
 
 const handleLink = (link, linkData) => {
@@ -36,7 +36,6 @@ const handleLink = (link, linkData) => {
 const MainMenuItem = props => {
   const {
     subMenuDark,
-    color,
     textHoverColor,
     isBorderBottom,
     title,
@@ -47,19 +46,12 @@ const MainMenuItem = props => {
     isCurrent,
     sub,
     height,
-    transparent,
     routeMap,
     history,
   } = props;
   const link = folderSwitch === 'YES' ? '' : rawLink;
   const { bindEvent, bindDropdownMenu } = useDropdownMenu();
   const categoryViewData = linkData === '0' ? linkDetail?.data?.list : linkDetail?.data?.list[0]?.sub
-
-  // const {
-  //   mainMenuStyle: { textImgColor },
-  // } = useTheme();  // 共用色系色定後續補上
-
-  const primaryColor = transparent ? '#fff' : color;    // 主要色系
   const dropdownElementMap = useMemo(() => (
     {
       // 商品分類
@@ -97,12 +89,11 @@ const MainMenuItem = props => {
         <SVGIcon
           type="MenuDropdownArrow"
           className={mainMenuStyled.dropdownArrow}
-          color={primaryColor}
         />
       )}
       {dropdownElementMap[link]}
     </>
-  ), [dropdownElementMap, hasDropdown, link, primaryColor]);
+  ), [dropdownElementMap, hasDropdown, link]);
 
   return (
     <MainMenuItemLi
@@ -111,7 +102,6 @@ const MainMenuItem = props => {
         active: isCurrent,
       })}
       isBorderBottom={isBorderBottom}
-      color={primaryColor}
       {...dropdownEvent}
     >
       {hasDropdown && <span style={{ lineHeight: `${height}px` }}>{title}</span>}

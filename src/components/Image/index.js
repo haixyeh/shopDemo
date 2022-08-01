@@ -8,10 +8,8 @@ import widgetPlaceholderUrl from '../../assets/svg/widget-placeholder.svg';
  */
 function Image(props) {
   const { src, placeholder = 'an image', srcSet, sizes, style, className, alt, onClick } = props;
-  const srcSetData =
-    srcSet && sizes
-      ? { srcSet, sizes } // https://caniuse.com/#feat=srcset
-      : undefined;
+  // https://caniuse.com/?search=srcset
+  const srcSetData = srcSet && sizes ? { srcSet, sizes } : undefined;
   const handleClickImage = event => {
     if (onClick) {
       onClick(event);

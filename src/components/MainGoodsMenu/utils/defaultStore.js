@@ -1,4 +1,4 @@
-import { TypeEnum } from "../Banner";
+import { TypeEnum } from "../../Banner";
 
 export const bannerInfo = {
   banners: [

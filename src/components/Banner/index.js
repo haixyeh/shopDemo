@@ -25,7 +25,7 @@ const typeClassNames = {
 const DotNavigationSingle = styled.span`
   &&&&:before {
     background-color: ${props =>
-    props.selected ? props.primary?.bgColor : '#e5e5e5'};
+    props.selected ? props.theme?.primaryColor : '#e5e5e5'};
     z-index: 2;
   }
 `;
