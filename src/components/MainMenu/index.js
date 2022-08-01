@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useMemo } from 'react';
 import { withRouter } from 'dva/router';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -60,8 +60,6 @@ const MainMenuItem = props => {
   // } = useTheme();  // 共用色系色定後續補上
 
   const primaryColor = transparent ? '#fff' : color;    // 主要色系
-  const [hasDropdown, setHasDropdown] = useState(true); // 是否有下拉狀態
-  const [dropdownEvent, setDropdownEvent] = useState(bindEvent());
   const dropdownElementMap = useMemo(() => (
     {
       // 商品分類
@@ -91,13 +89,8 @@ const MainMenuItem = props => {
     }
   ), [categoryViewData, history, routeMap, subMenuDark, sub, textHoverColor, bindDropdownMenu]);
 
-  useEffect(() => {
-    if (!dropdownElementMap[link]) {
-      setHasDropdown(false);
-      setDropdownEvent(null);
-    }
-  }, [link, dropdownElementMap]);
-
+  const hasDropdown = !!dropdownElementMap[link]; // 是否有下拉狀態
+  const dropdownEvent = dropdownElementMap[link] ? bindEvent() : null;
   const dropdownElement = useMemo(() => (
     <>
       {hasDropdown && (
