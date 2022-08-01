@@ -34,7 +34,9 @@ const Category = (props) => {
       {/* 商品分類 */}
       <MainGoodsMenu />
       { text }
-      id: { id }
+      <div className={style.showId}>id: 
+        <span className={style.id}>{ id }</span>
+      </div>
     </div>
   );
 }
