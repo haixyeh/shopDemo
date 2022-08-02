@@ -37,7 +37,7 @@ const GoodsMenu = styled.div`
 const MainGoodsMenu = () => {
   const { isDark } = useTheme();
   return (
-    <GoodsMenu className={lessStyled.goodsMenu} isDark={isDark}>
+    <GoodsMenu className={lessStyled.goodsMenu} isDark={isDark} key="goodsMenu">
       <div className={lessStyled.inner}>
         <MainMenu
           list={mainMenuDefault} 
