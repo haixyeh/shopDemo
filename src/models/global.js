@@ -11,9 +11,7 @@ export default {
     banners: [],
     loading: false
   },
-
   subscriptions: {},
-
   effects: {
     // dispatch 用户信息
     *setUserInfo({ payload }, { put }) {
@@ -23,20 +21,17 @@ export default {
     *fetchBannerInfo(_, { call, put }) {
       yield put({ type: 'setLoading', payload: true });
       const response = yield call(getBannerInfo);
-
       if (response) {
         yield put({
           type: 'setBannerInfo',
           payload: response,
         });
         yield put({ type: 'setLoading', payload: false });
-
         return;
       }
       yield put({ type: 'setLoading', payload: false });
     }
   },
-
   reducers: {
     setLoading(state, action) {
       return { ...state, loading: action.payload }

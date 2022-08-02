@@ -60,6 +60,16 @@ export const mainMenuDefault = [
         linkData: 'https://www.cakeresume.com/dashboard/resumes?ref=dashboard_navs_resumes',
         linkDetail: null,
       },
+      {
+        mainId: 125,
+        parentId: 125,
+        menuCategory: 'SUB',
+        folderSwitch: 'NO',
+        title: 'Ryan Blog(Medium)',
+        link: '_blank',
+        linkData: 'https://medium.com/@haix.yeh_54536',
+        linkDetail: null,
+      },
     ],
   },
   {
