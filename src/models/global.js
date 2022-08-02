@@ -9,7 +9,6 @@ export default {
       key: 7867861782
     },
     banners: [],
-    loading: false
   },
   subscriptions: {},
   effects: {
@@ -21,21 +20,13 @@ export default {
     *fetchBannerInfo(_, { call, put }) {
       yield put({ type: 'setLoading', payload: true });
       const response = yield call(getBannerInfo);
-      if (response) {
-        yield put({
-          type: 'setBannerInfo',
-          payload: response,
-        });
-        yield put({ type: 'setLoading', payload: false });
-        return;
-      }
-      yield put({ type: 'setLoading', payload: false });
+      yield put({
+        type: 'setBannerInfo',
+        payload: response,
+      });
     }
   },
   reducers: {
-    setLoading(state, action) {
-      return { ...state, loading: action.payload }
-    },
     // 设置用户信息 userInfo的state
     set_userinfo(state, { payload }) {
       return { ...state, userInfo: payload };

@@ -6,10 +6,10 @@ import styled from './index.less';
 
 const Home = () => {
   const dispatch = useDispatch();
-  const { banners, loading } = useSelector(
-    ({ global }) => ({
+  const { banners, load } = useSelector(
+    ({ global, loading }) => ({
       banners: global.banners,
-      loading: global.loading
+      load: loading.effects['global/fetchBannerInfo']
     })
   );
   const fetchApi = () => dispatch({
@@ -26,7 +26,7 @@ const Home = () => {
       {/* 橫幅 */}
       <div className={styled.bannerSlider}>
         <div className={styled.content}>
-          {loading? 
+          {load ? 
             '加載中...'
             :
             <Banner banners={banners} />

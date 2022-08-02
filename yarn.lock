@@ -6384,10 +6384,10 @@ duplexify@^3.4.2, duplexify@^3.6.0:
     readable-stream "^2.0.0"
     stream-shift "^1.0.0"
 
-dva-core@2.0.4:
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/dva-core/-/dva-core-2.0.4.tgz#086665d1d5f684e089c5bfac9ba388d91cc9050a"
-  integrity sha512-Zh39llFyItu9HKXKfCZVf9UFtDTcypdAjGBew1S+wK8BGVzFpm1GPTdd6uIMeg7O6STtCvt2Qv+RwUut1GFynA==
+dva-core@2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/dva-core/-/dva-core-2.0.2.tgz#7166ef879e335db018b942c9c0f2e1a5543851a0"
+  integrity sha512-EGYjkjx6/9R3ek1L37cb6joDCLwbPrqRM56UrFqKc5yltx5UDAK3soa/Ug4j4nlGTN5W8T1Fz0qJlP3R7Jm0Hg==
   dependencies:
     "@babel/runtime" "^7.0.0"
     flatten "^1.0.2"
@@ -6397,17 +6397,24 @@ dva-core@2.0.4:
     redux-saga "^0.16.0"
     warning "^3.0.0"
 
+dva-loading@^3.0.22:
+  version "3.0.22"
+  resolved "https://registry.yarnpkg.com/dva-loading/-/dva-loading-3.0.22.tgz#c0dd2fb081492752b992d9ce2701b88825186e02"
+  integrity sha512-WReyAQwW42aimEwkjDLJSu3W4y1WjkOVcqdIY7x1ARrobgkNC3dVfLe4xUgdtHuLfSJzWa55FrdRrVM3b5QwcA==
+  dependencies:
+    "@babel/runtime" "^7.0.0"
+
 dva@^2.6.0:
-  version "2.6.0-beta.22"
-  resolved "https://registry.yarnpkg.com/dva/-/dva-2.6.0-beta.22.tgz#3288993ecea70ee9c507d4aa9e0ed8247d4af69c"
-  integrity sha512-Q19fqiQxtl9L4a/woKoLTStagZR3QxTUEHuFhYBe0RLAf514HEuPmJXQrDz4p+QggNpTaI8lUzzId2TzntAFcQ==
+  version "2.6.0-beta.20"
+  resolved "https://registry.yarnpkg.com/dva/-/dva-2.6.0-beta.20.tgz#5633a008456479040d5efd553d4fc85e12dff88a"
+  integrity sha512-CP2xg32VzxgeBk98og2e4JbMruO8+jexTBQvTbpK9v+aZ99MBUg18mLZUhody9Uq+jPxRDx70rzkxpP+HM0/9A==
   dependencies:
     "@babel/runtime" "^7.0.0"
     "@types/isomorphic-fetch" "^0.0.35"
     "@types/react-redux" "^7.1.0"
     "@types/react-router-dom" "^5.1.2"
     connected-react-router "6.5.2"
-    dva-core "2.0.4"
+    dva-core "2.0.2"
     global "^4.3.2"
     history "^4.7.2"
     invariant "^2.2.4"
