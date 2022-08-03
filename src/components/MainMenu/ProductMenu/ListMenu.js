@@ -5,56 +5,37 @@ import styled from 'styled-components';
 import classNames from 'classnames';
 import navigationStyled from '../navigate.less';
 
-const ListLabel = styled.span`
-  &:hover {
-    color: ${props => props.primary?.color || props.theme?.color};
-  }
-`;
-
 const ListLink = styled.a`
+  color: ${props => props.theme?.primaryColorText};
   &:hover {
-    color: ${props => props.primary?.color || props.theme?.color};
+    color: ${props => props.theme?.primaryColorTextHover};
   }
 `;
 
 /**
  * ListMenu 菜單選項
  */
-const ListMenu = memo(({ column, history, color }) => (
+const ListMenu = memo(({ column, history }) => (
   <ul className={navigationStyled.list}>
     {column.map((item) => {
       return (
-        <div className={classNames(navigationStyled.listItem,
-          {
-            [navigationStyled.hasSub]: item.sub?.length > 0,
-          })}
+        <div
+          className={classNames(navigationStyled.listItem,
+            {
+              [navigationStyled.hasSub]: item.sub?.length > 0,
+            })}
+          onClick={event => {
+            event.preventDefault();
+            history.push(item.url);
+          }}
         >
-          {item.sub?.length > 0 &&
-          <ListLabel
-            className={classNames(navigationStyled.listLabel)}
-            key={item.url}
-            primary={{ color }}
-            onClick={event => {
-              event.preventDefault();
-              history.push(item.url);
-            }}
-          >
-            {item.title}
-            <ListMenu column={item.sub} history={history} color={color} />
-          </ListLabel>
-          }
-          {item.sub?.length <= 0 && 
           <ListLink
-            className={classNames(navigationStyled.text)}
+            className={classNames(navigationStyled.listLink)}
             key={item.url}
-            onClick={event => {
-              event.preventDefault();
-              history.push(item.url);
-            }}
           >
             {item.title}
+            {item.sub?.length > 0 && <ListMenu column={item.sub} history={history} />}
           </ListLink>
-          }
         </div>
       )
     })
@@ -63,8 +44,6 @@ const ListMenu = memo(({ column, history, color }) => (
 ));
 
 ListMenu.propTypes = {
-  /** color `文字hover用` */
-  color: PropTypes.string,
   /** 選單資料 */
   column: PropTypes.arrayOf(
     PropTypes.shape({
@@ -79,7 +58,6 @@ ListMenu.propTypes = {
 };
 
 ListMenu.defaultProps = {
-  color: null,
   column: [],
   history: {},
 };

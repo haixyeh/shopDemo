@@ -25,13 +25,11 @@
     color: #4C4C4C;
     transition: width 0.3s, height 0.3s;
     .list {
-      padding: 5px 0;
       border: 2px solid #4C4C4C;
       background: #FFF;
       color: #4C4C4C;
       .listItem {
         position: relative;
-        padding: 5px 15px;
         box-sizing: border-box;
         width: 245px;
         height: 34px;
@@ -50,13 +48,13 @@
           }
           .list {
             position: absolute;
-            top: -13px;
-            left: 232px;
+            top: -2px;
+            left: 100%;
             display: none;
           }
           &:hover,
           &:active {
-            > .listLabel > .list {
+            > .listLink > .list {
               display: block;
               box-shadow: @modal-window-box-shadow;
             }
@@ -70,10 +68,10 @@
           }
         }
       }
-      .listLink,
-      .listLabel {
+      .listLink {
         position: relative;
         display: block;
+        padding: 5px 15px;
         white-space: nowrap;
         text-overflow: ellipsis;
         cursor: pointer;

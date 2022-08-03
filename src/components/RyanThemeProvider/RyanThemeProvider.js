@@ -19,6 +19,7 @@ const lightTheme = {
   basicBackground: '#EEE',
   primaryColor: parseHslValue(0, 0, 0, 'default'),
   primaryColorText: parseHslValue(0, 0, 0, 'lightest'),
+  primaryColorTextHover: parseHslValue(100, 100, 100, 'lightest'),
   // 商品主選單
   menuBackgroundColor: '#FFF',
   menuDropdownArrow: parseHslValue(0, 0, 0, 'lightest')
@@ -29,6 +30,7 @@ const darkTheme = {
   basicBackground: '#000',
   primaryColor: '#FF0E0E',
   primaryColorText: '#FFF',
+  primaryColorTextHover: '#EA4C4C',
   // 商品主選單
   menuBackgroundColor: '#232323',
   menuDropdownArrow: '#FFF'

@@ -5,8 +5,9 @@ import classNames from 'classnames';
 import navigationStyled from '../navigate.less';
 
 const ListLink = styled.a`
+  color: ${props => props.theme?.primaryColorText};
   &:hover {
-    color: ${props => props.primary?.color || props.theme?.color};
+    color: ${props => props.theme?.primaryColorTextHover};
   }
 `;
 
@@ -17,7 +18,6 @@ const ListLink = styled.a`
  */
 const NavigationItem = props => {
   const {
-    color,
     link,
     linkData,
     linkDetail,
@@ -33,7 +33,6 @@ const NavigationItem = props => {
       <ListLink
         href={`/event/${linkData}`}
         className={navigationStyled.listLink}
-        primary={{ color }}
         onClick={event => {
           event.preventDefault();
           history.push(`/event/${linkData}`);
@@ -50,7 +49,6 @@ const NavigationItem = props => {
         <ListLink
           href={routeMap[link]}
           className={navigationStyled.listLink}
-          primary={{ color }}
           onClick={event => {
             event.preventDefault();
             if (routeMap[link]) {
@@ -59,7 +57,6 @@ const NavigationItem = props => {
             handleLink(link, linkData, linkDetail);
           }}
         >
-          
           {title}
         </ListLink>
       </li>
@@ -70,8 +67,6 @@ const NavigationItem = props => {
 };
 
 NavigationItem.propTypes = {
-  /** color `文字hover用` */
-  color: PropTypes.string,
   /** 連結 */
   link: PropTypes.string.isRequired,
   /** 最新活動 event id */
@@ -91,7 +86,6 @@ NavigationItem.propTypes = {
 };
 
 NavigationItem.defaultProps = {
-  color: null,
   linkData: '',
   linkDetail: {
     data: {
@@ -141,7 +135,6 @@ const Navigation = props => {
                 handleLink={handleLink}
                 routeMap={routeMap}
                 history={history}
-                color={color}
                 {...item}
               />
             ))}
@@ -155,9 +148,7 @@ const Navigation = props => {
                 )}
               >
                 <ListLink
-                  // href="/about/events"
-                  className={navigationStyled.listLink}
-                  primary={{ color }}
+                  className={navigationStyled.listLabel}
                   onClick={event => {
                     event.preventDefault();
                     history.push('/about/events');
@@ -177,8 +168,6 @@ const Navigation = props => {
 Navigation.propTypes = {
   /** 深色系 */
   dark: PropTypes.bool,
-  /** color `文字hover用` */
-  color: PropTypes.string,
   /** CSS class name for component */
   className: PropTypes.string,
   /** 資料 */
@@ -219,7 +208,6 @@ Navigation.propTypes = {
 
 Navigation.defaultProps = {
   dark: false,
-  color: null,
   className: null,
   list: [],
   showMore: false,
