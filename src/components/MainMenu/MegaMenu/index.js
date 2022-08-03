@@ -1,5 +1,5 @@
 /* eslint-disable no-shadow */
-import React, { useState, useReducer } from 'react';
+import React, { useState, memo, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Icon } from 'antd';
@@ -26,6 +26,11 @@ function groupDataToColumns(data) {
   return chunk(data, 10);
 }
 
+const setTitleMethod = ({title, link, idx}) => preTitle => {
+  preTitle.splice(idx, 1, { text: title, link });
+  return preTitle;
+}
+
 const levelStateEnum = {
   SHOW_LV0_MENU: 'SHOW_LV0_MENU',
   SHOW_LV1_MENU: 'SHOW_LV1_MENU',
@@ -37,6 +42,57 @@ const levelEventEnum = {
   NEXT_LEVEL: 'NEXT_LEVEL',
   RESET: 'RESET',
 };
+
+// 頁面標題(第二頁之後才有)
+const TitleElement = memo(({ nested, text, link, color, history }) => (
+  <div
+    className={classNames(navigationStyled.title, {
+      [navigationStyled.active]: nested,
+    })}
+  >
+    <ListLink
+      href={link}
+      className={classNames(navigationStyled.text)}
+      primary={{ color }}
+      onClick={event => {
+        event.preventDefault();
+        history.push(link);
+      }}
+    >
+      {text}
+    </ListLink>
+  </div>
+));
+
+// 不同層級的頁面顯示
+const LvMenu = memo(({ lvIndex, lvColumns }) => ((
+  <>
+    <ul
+      className={classNames(
+        navigationStyled.list,
+        navigationStyled.level,
+        navigationStyled.level0,
+        {
+          [navigationStyled.listExpanded]: lvIndex !== 0
+        }
+      )}
+    >
+      {lvColumns[lvIndex]}
+    </ul>
+  </>
+)));
+
+// 關閉按鈕
+const CloseButton = memo(({ nested, handleCloseButtonClick }) => (
+  <div
+    className={classNames(navigationStyled.close, {
+      [navigationStyled.active]: nested,
+    })}
+    onClick={handleCloseButtonClick}
+  >
+    <SVGIcon type="CloseGray" className={classNames(navigationStyled.icon)} />
+  </div>
+));
 
 const levelMachine = createMachine({
   id: 'megaMenu',
@@ -78,49 +134,19 @@ function calculateWrapperWidth(level, columns) {
   return width;
 }
 
-const initialMenuPageState = 1;
-
-const menuStepActionType = {
-  PREV: 'PREV',
-  NEXT: 'NEXT',
-  RESET: 'RESET',
-};
-
-const menuStepReducer = maxPageStep => (currentStep, action) => {
-  let newState = currentStep;
-  switch (action.type) {
-  case menuStepActionType.PREV: {
-    if (currentStep > 1) {
-      newState = currentStep - 1;
-    }
-    break;
-  }
-  case menuStepActionType.NEXT: {
-    if (currentStep < maxPageStep) {
-      newState = currentStep + 1;
-    }
-    break;
-  }
-  case menuStepActionType.RESET: {
-    newState = initialMenuPageState;
-    break;
-  }
-  default:
-  }
-
-  return newState;
-};
-
 /** MegaMenu - [下拉選單(連結) 多層級子項目] */
 const MegaMenu = props => {
   const { dark, color, data, onClose, className, active, history } = props; // NOTE: active 為 workaround
   const [lock, setLock] = useState(false);
-  const [title, setTitle] = useState({ text: '', link: '' });
+  const [titleMap, setTitle] = useState(Array(3).fill({link: '', text: ''}));
 
   const [levelState, send] = useMachine(levelMachine);
+
   const level0 = levelState.value === levelStateEnum.SHOW_LV0_MENU;
   const level1 = levelState.value === levelStateEnum.SHOW_LV1_MENU;
   const level2 = levelState.value === levelStateEnum.SHOW_LV2_MENU;
+  const currentPageIdx =  [level0, level1, level2].findIndex(item => !!item);
+
 
   const [currentLv0ColumnIndex, setCurrentLv0ColumnIndex] = useState();
   const [currentLv0ItemIndex, setCurrentLv0ItemIndex] = useState();
@@ -134,99 +160,24 @@ const MegaMenu = props => {
   const lv1Columns = groupDataToColumns(lv0Columns[currentLv0ColumnIndex]?.[currentLv0ItemIndex].sub);
   const lv2Columns = groupDataToColumns(lv1Columns[currentLv1ColumnIndex]?.[currentLv1ItemIndex]?.sub);
 
-  const wrapperWidth =
-    (level0 && calculateWrapperWidth('0', lv0Columns)) ||
-    (level1 && calculateWrapperWidth('1', lv1Columns)) ||
-    (level2 && calculateWrapperWidth('2', lv2Columns));
+  const calculateWrapperWidthMap = [calculateWrapperWidth('0', lv0Columns), calculateWrapperWidth('1', lv1Columns), calculateWrapperWidth('2', lv2Columns)]
+  const wrapperWidth = calculateWrapperWidthMap[currentPageIdx];
+  const nested = currentPageIdx > 0;
 
-  const enableLv0MenuPagination = lv0Columns.length > 4; // lv0 超過 4 行就顯示下方分頁器
-  const maxLv0MenuPageStep = enableLv0MenuPagination ? lv0Columns.length - 3 : '-';
-  const [lv0MenuPageStep, dispatchLv0MenuPageStep] = useReducer(
-    menuStepReducer(maxLv0MenuPageStep),
-    initialMenuPageState
-  );
-
-  const resetLv0Page = () => dispatchLv0MenuPageStep({ type: menuStepActionType.RESET });
-  const transformLv0XPosition = (lv0MenuPageStep - 1) * 260;
-
-  const enableLv1MenuPagination = lv1Columns.length > 3; // lv1 超過 3 行就顯示下方分頁器
-  const maxLv1MenuPageStep = enableLv1MenuPagination ? lv1Columns.length - 2 : '-';
-  const [lv1MenuPageStep, dispatchLv1MenuPageStep] = useReducer(
-    menuStepReducer(maxLv1MenuPageStep),
-    initialMenuPageState
-  );
-
-  const resetLv1Page = () => dispatchLv1MenuPageStep({ type: menuStepActionType.RESET });
-  const transformLv1XPosition = (lv1MenuPageStep - 1) * 260;
-
-  const enableLv2MenuPagination = lv2Columns.length > 3; // lv2 超過 3 行就顯示下方分頁器
-  const maxLv2MenuPageStep = enableLv2MenuPagination ? lv2Columns.length - 2 : '-';
-  const [lv2MenuPageStep, dispatchLv2MenuPageStep] = useReducer(
-    menuStepReducer(maxLv2MenuPageStep),
-    initialMenuPageState
-  );
-
-  const resetLv2Page = () => dispatchLv2MenuPageStep({ type: menuStepActionType.RESET });
-  const transformLv2XPosition = (lv2MenuPageStep - 1) * 260;
-
-  const nested = level1 || level2;
-
-  const titleElement = (
-    <div
-      className={classNames(navigationStyled.title, {
-        [navigationStyled.active]: nested,
-      })}
-    >
-      <ListLink
-        href={title.link}
-        className={classNames(navigationStyled.text)}
-        primary={{ color }}
-        onClick={event => {
-          event.preventDefault();
-          history.push(title.link);
-        }}
-      >
-        {title.text}
-      </ListLink>
-    </div>
-  );
-
-
-  const resetPagination = () => {
-    resetLv0Page();
-    resetLv1Page();
-    resetLv2Page();
-  };
-
-  const handleCloseButtonClick = () => {
-    resetPagination();
+  const handleCloseButtonClick = useCallback(() => {
     send(levelEventEnum.CLOSE);
-  };
+  }, [send]);
 
   const handleOnClose = () => {
-    if (lock) {
-      return;
-    }
-    resetPagination();
+    if (lock) return;
     send(levelEventEnum.RESET);
     if (onClose) onClose();
   };
 
-  const closeButton = (
-    <div
-      className={classNames(navigationStyled.close, {
-        [navigationStyled.active]: nested,
-      })}
-      onClick={handleCloseButtonClick}
-    >
-      <SVGIcon type="CloseGray" className={classNames(navigationStyled.icon)} />
-    </div>
-  );
 
   const handleLv0ListItemClick = (title, link, columnIndex, itemIndex) => e => {
     e.stopPropagation();
-    resetPagination();
-    setTitle({ text: title, link });
+    setTitle(setTitleMethod({title, link, idx: 0}));
     setCurrentLv0ItemIndex(itemIndex);
     setCurrentLv0ColumnIndex(columnIndex);
     setCurrentLv1MenuOffset(itemIndex * -34 + 34);
@@ -235,8 +186,7 @@ const MegaMenu = props => {
 
   const handleCurrentLv0ListItemClick = (title, link, columnIndex, itemIndex) => e => {
     e.stopPropagation();
-    resetPagination();
-    setTitle({ text: title, link });
+    setTitle(setTitleMethod({title, link, idx: 1}));
     if (level1) {
       setCurrentLv0ItemIndex(itemIndex);
       setCurrentLv0ColumnIndex(columnIndex);
@@ -250,8 +200,7 @@ const MegaMenu = props => {
 
   const handleCurrentLv1ListItemClick = (title, link, columnIndex, itemIndex) => e => {
     e.stopPropagation();
-    resetPagination();
-    setTitle({ text: title, link });
+    setTitle(setTitleMethod({title, link, idx: 2}));
     setCurrentLv1ItemIndex(itemIndex);
     setCurrentLv1ColumnIndex(columnIndex);
     setCurrentLv2MenuOffset(itemIndex * -34 + 34);
@@ -330,7 +279,6 @@ const MegaMenu = props => {
     <li
       key={`lv0-column-${columnIndex}-${listItems.linkData}`}
       className={classNames(navigationStyled.listColumn)}
-      style={{ transform: `translateX(-${transformLv0XPosition}px)` }}
     >
       <ul className={classNames('list')}>
         {listItems.map((item, index) => lv0ListElement(item, columnIndex, index))}
@@ -339,14 +287,10 @@ const MegaMenu = props => {
   );
 
   const lv1ColumnElement = (listItems, columnIndex) => {
-    let transform;
-    if (level1) transform = transformLv1XPosition;
-    else if (level2) transform = transformLv2XPosition;
     return (
       <li
         key={`lv1-column-${columnIndex}`}
         className={classNames(navigationStyled.listColumn)}
-        style={{ transform: `translateX(-${transform}px)` }}
       >
         <ul className={classNames('list')}>
           {listItems.map((item, index) => lv1ListElement(item, columnIndex, index))}
@@ -379,7 +323,7 @@ const MegaMenu = props => {
 
     return (
       <li
-        key={`${currentLv0ColumnIndex}-${itemIndex}-${link}-${JSON.stringify(lv2Columns)}`}
+        key={`${currentLv0ColumnIndex}-${itemIndex}-${link}`}
         className={classNames(navigationStyled.listItem, {
           [navigationStyled.hasSub]: hasSub,
           [navigationStyled.active]: active,
@@ -419,37 +363,19 @@ const MegaMenu = props => {
     );
   };
 
-  const currentLvColumnElement = listItems => (
+  const currentLvColumnElement = (listItems => (
     <li className={classNames(navigationStyled.listColumn, navigationStyled.active)}>
       <ul className={classNames(navigationStyled.list)}>
         {listItems?.map((item, index) => currentLv0ListElement(item, index))}
       </ul>
     </li>
-  );
+  ));
 
-  const lvMenu = (lvIndex) => {
-    const lvColumns = {
-      '0': lv0Columns.map((item, index) => lv0ColumnElement(item, index)),
-      '1': currentLvColumnElement(lv0Columns[currentLv0ColumnIndex]),
-      '2': currentLvColumnElement(lv1Columns[currentLv1ColumnIndex])
-    };
-    return (
-      <>
-        <ul
-          className={classNames(
-            navigationStyled.list,
-            navigationStyled.level,
-            navigationStyled.level0,
-            {
-              [navigationStyled.listExpanded]: lvIndex !== 0
-            }
-          )}
-        >
-          {lvColumns[lvIndex]}
-        </ul>
-      </>
-    )
-  }
+  const lvColumns = [
+    lv0Columns.map((item, index) => lv0ColumnElement(item, index)),
+    currentLvColumnElement(lv0Columns[currentLv0ColumnIndex]),
+    currentLvColumnElement(lv1Columns[currentLv1ColumnIndex])
+  ];
 
   return (
     <div
@@ -471,12 +397,15 @@ const MegaMenu = props => {
         })}
         style={{ width: wrapperWidth }}
       >
-        
-        {titleElement}
-        {closeButton}
-        {level0 && lvMenu(0)}
-        {level1 && lvMenu(1)}
-        {level2 && lvMenu(2)}
+        <TitleElement
+          nested={nested}
+          color={color}
+          history={history}
+          text={titleMap[currentPageIdx].text}
+          link={titleMap[currentPageIdx].link}
+        />
+        <CloseButton nested={nested} handleCloseButtonClick={handleCloseButtonClick} />
+        <LvMenu lvIndex={currentPageIdx} lvColumns={lvColumns} />
         <Icon
           type={lock ? 'lock' : 'unlock'}
           className={
