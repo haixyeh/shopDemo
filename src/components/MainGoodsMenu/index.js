@@ -14,12 +14,8 @@ const routeMap = {
 const isMainMenuItemActive = (item, pathname) => {
   const { link } = item;
   // 全站分類項目
-  if (pathname.includes('category') && link === 'setCategoryView') {
-    return true;
-  }
-  if (routeMap[link] && pathname.replace("/", "")  === routeMap[link]) {
-    return true;
-  }
+  if (pathname.includes('category') && link === 'setCategoryView') return true;
+  if (routeMap[link] && pathname.replace("/", "") === routeMap[link]) return true;
   return false;
 }
 

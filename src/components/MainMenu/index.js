@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import styled, { css } from 'styled-components';
 import SVGIcon from '../SVGIcon';
 import Navigation from './Navigation';
-import MegaMenu from './MegaMenu';
+import ProductMenu from './ProductMenu';
 import useDropdownMenu from '../../utils/useDropdownMenu';
 import mainMenuStyled from './mainMenu.less';
 
@@ -58,7 +58,7 @@ const MainMenuItem = props => {
     {
       // 商品分類
       'setCategoryView': (
-        <MegaMenu
+        <ProductMenu
           className={classNames(mainMenuStyled.subMenu)}
           dark={subMenuDark}
           color={textHoverColor}
@@ -316,4 +316,4 @@ MainMenu.defaultProps = {
 };
 
 export default withRouter(MainMenu);
-export { MainMenuItem };
+
