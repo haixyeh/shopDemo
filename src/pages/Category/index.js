@@ -1,39 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import { connect } from 'dva';
+import React from 'react';
+import PropTypes from 'prop-types';
 import style from './index.less';
 import MainGoodsMenu from '../../components/MainGoodsMenu';
 
-
-
-// eslint-disable-next-line compat/compat
-const ajaxSimulator = () => new Promise((resolve) => {
-  setTimeout(() => {
-    resolve('異步資料', 2000);
-  }, 2000)
-});
-
 const Category = (props) => {
-  const [txt, setTxt] = useState('隨機數字顯示');
-  const { dispatch } = props;
-  const { match, text = null, name = '', count = 0 } = props;
-  const { params: { id } } = match;
-  
-  useEffect(() => {
-    dispatch({
-      type: "category/getList"
-    }) 
-
-    ajaxSimulator().then((res) => {
-      setTxt(res);
-    })
-  }, [dispatch, txt, text, name, count]);
-
+  const {
+    match: {
+      params: { id }
+    }
+  } = props;
 
   return (
     <div className={style.category}>
       {/* 商品分類 */}
       <MainGoodsMenu />
-      { text }
       <div className={style.showId}>id: 
         <span className={style.id}>{ id }</span>
       </div>
@@ -41,12 +21,20 @@ const Category = (props) => {
   );
 }
 
-const mapStateToProps = (state) => {
-  return {
-    text: state.category?.text,
-    title: state.category.name,
-    count: state.category.count,
-    loading: state.category.loading
+Category.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string
+    })
+  })
+}
+
+Category.defaultProps = {
+  match: {
+    params: {
+      id: null
+    }
   }
 }
-export default connect(mapStateToProps)(Category);
+
+export default Category;

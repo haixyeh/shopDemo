@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Tabs } from 'antd';
-import { Switch } from 'dva/router';
+import { router } from 'dva';
 import styled from './index.less';
 import SubRoutes, { RedirectRoute } from '../../utils/SubRoutes';
 
 const { TabPane } = Tabs;
+const { Switch } = router;
 
 const onChangeTabs = ({key, history, pathname}) => {
   if (key !== pathname) {

@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { withRouter } from 'dva/router';
+import { router } from 'dva';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import styled, { css } from 'styled-components';
@@ -8,6 +8,8 @@ import Navigation from './Navigation';
 import MegaMenu from './MegaMenu';
 import useDropdownMenu from '../../utils/useDropdownMenu';
 import mainMenuStyled from './mainMenu.less';
+
+const { withRouter } = router;
 
 const activeBottomBorderCss = css`
   &&.active {

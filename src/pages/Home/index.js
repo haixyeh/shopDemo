@@ -6,31 +6,25 @@ import styled from './index.less';
 
 const Home = () => {
   const dispatch = useDispatch();
-  const { banners, load } = useSelector(
+  const { banners, isLoading } = useSelector(
     ({ global, loading }) => ({
       banners: global.banners,
-      load: loading.effects['global/fetchBannerInfo']
+      isLoading: loading.effects['global/fetchBannerInfo']
     })
   );
-  const fetchApi = () => dispatch({
-    type: 'global/fetchBannerInfo',
-  });
 
   useEffect(() => {
     if (banners.length) return;
-    fetchApi();
-  }, []);
+    dispatch({ type: 'global/fetchBannerInfo' })
+  }, [dispatch, banners.length]);
 
   return (
     <div className={styled.home}>
       {/* 橫幅 */}
       <div className={styled.bannerSlider}>
         <div className={styled.content}>
-          {load ? 
-            '加載中...'
-            :
-            <Banner banners={banners} />
-          }
+          {isLoading && "加載中..."}
+          {!isLoading &&  <Banner banners={banners} />}
         </div>
       </div>
       {/* 商品分類 */}

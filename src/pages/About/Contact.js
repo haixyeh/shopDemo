@@ -1,9 +1,11 @@
 import React from 'react';
-// import { Route } from 'dva/router';
-import { Link, Switch } from 'dva/router';
+import PropTypes from 'prop-types';
+import { router } from 'dva';
 import SubRoutes, { RedirectRoute } from '../../utils/SubRoutes';
 
-const Index = ({routes, app}) => {
+const { Link, Switch } = router;
+
+const Contact = ({ routes, app }) => {
   return (
     <div>
       <p>聯繫我們</p>
@@ -14,11 +16,11 @@ const Index = ({routes, app}) => {
       </div>
       <div>
         <Switch>
-          {routes.map((route, i) => (
-            // eslint-disable-next-line react/no-array-index-key
-            <SubRoutes key={i} {...route} app={app} />
-          ))}
-          {/* <Redirect to="/home" /> */}
+          {routes.map((route) => {
+            return (
+              <SubRoutes key={route.path} {...route} app={app} />
+            )
+          })}
           <RedirectRoute exact from="/about" routes={routes} />
         </Switch>
       </div>
@@ -26,4 +28,9 @@ const Index = ({routes, app}) => {
   );
 }
 
-export default Index;
+Contact.propTypes = {
+  routes: PropTypes.array.isRequired,
+  app: PropTypes.object.isRequired
+}
+
+export default Contact;

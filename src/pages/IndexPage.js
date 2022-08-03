@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'dva';
 import { Layout } from 'antd';
 // 引入路由需要的组件
-import { Switch } from 'dva/router';
+import { router } from 'dva';
 import RyanThemeProvider from '../components/RyanThemeProvider/RyanThemeProvider';
 import SubRoutes, { RedirectRoute, NoMatchRoute } from '../utils/SubRoutes';
 
@@ -11,6 +10,7 @@ import TopNavBar from '../components/TopNavBar';
 import lessStyled from './IndexPage.less';
 
 const { Header, Content } = Layout;
+const { Switch } = router;
 
 function IndexPage(props) {
   const { routes, app } = props;
@@ -19,7 +19,7 @@ function IndexPage(props) {
 
   useEffect(() => {
     localStorage.setItem('isDark', isDark);
-  }, [isDark])
+  }, [isDark]);
 
   return (
     <Layout className={lessStyled.layout}>
@@ -50,4 +50,4 @@ IndexPage.propTypes = {
   app: PropTypes.object.isRequired
 };
 
-export default connect()(IndexPage);
+export default (IndexPage);

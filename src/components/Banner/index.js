@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import styled from 'styled-components';
@@ -54,22 +54,23 @@ const Banner = props => {
     setSelected(index);
   };
 
-  const slidePrev = () => {
+  const slidePrev = useCallback(() => {
     setStored(selected);
     if (selected === 0) {
       setSelected(banners.length - 1);
     } else {
       setSelected(selected - 1);
     }
-  };
-  const slideNext = () => {
+  }, [banners.length, selected]);
+
+  const slideNext = useCallback(() => {
     setStored(selected);
     if (selected === banners.length - 1) {
       setSelected(0);
     } else {
       setSelected(selected + 1);
     }
-  };
+  }, [banners.length, selected]);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -123,7 +124,6 @@ const Banner = props => {
                 </div>
               ))}
             </div>
-
             <Image
               src={bannerLeft}
               className={classNames(lessStyled.bannerControl, lessStyled.bannerControlLeft)}

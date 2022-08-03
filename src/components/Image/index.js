@@ -10,11 +10,8 @@ function Image(props) {
   const { src, placeholder = 'an image', srcSet, sizes, style, className, alt, onClick } = props;
   // https://caniuse.com/?search=srcset
   const srcSetData = srcSet && sizes ? { srcSet, sizes } : undefined;
-  const handleClickImage = event => {
-    if (onClick) {
-      onClick(event);
-    }
-  };
+  const handleClickImage = event => onClick && onClick(event);
+
   return (
     <ProgressiveImage src={src} placeholder={placeholder} srcSetData={srcSetData}>
       {(image, loading, setData) => (
@@ -66,4 +63,4 @@ Image.defaultProps = {
   onClick: () => {},
 };
 
-export default Image;
+export default React.memo(Image);

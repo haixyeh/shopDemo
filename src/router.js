@@ -1,7 +1,9 @@
 import React from 'react';
-import { Router, Switch } from 'dva/router';
+import PropTypes from 'prop-types';
+import { router} from 'dva';
 import SubRoutes from './utils/SubRoutes';
 
+const { Router, Switch } = router;
 // 路由的開關
 const isAuthority = true;
 
@@ -23,18 +25,6 @@ const RouteConfig = [
         component: () => import('./pages/Category'),
         model: [import('./models/category')],
         redirect: true,
-        isAuthority
-      },
-      {
-        path: '/menus',
-        component: () => import('./pages/Menus'),
-        model: [import('./models/menus')],
-        isAuthority
-      },
-      {
-        path: '/admin',
-        component: () => import('./pages/Admin'),
-        model: [import('./models/admin')],
         isAuthority
       },
       {
@@ -102,6 +92,11 @@ function RouterConfig({ history, app }) {
       </Switch>
     </Router>
   );
+}
+
+RouterConfig.propTypes = {
+  history: PropTypes.array.isRequired,
+  app: PropTypes.object.isRequired
 }
 
 export default RouterConfig;

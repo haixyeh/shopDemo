@@ -1,9 +1,10 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
-import { Route, Redirect } from 'dva/router';
-import dynamic from 'dva/dynamic';
-import { connect } from 'dva';
+import { router, connect, dynamic } from 'dva';
 import NoMatch from '../components/NoMatch';
 
+
+const { Route, Redirect } = router;
 
 // 解决動態加載路由組件
 const dynamicCom = (app, models, component, routes, isAuthority, userInfo) =>

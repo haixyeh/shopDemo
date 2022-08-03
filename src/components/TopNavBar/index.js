@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useTheme } from 'styled-components';
-import { Link } from 'dva/router';
+import { router } from 'dva';
 import { Menu, Switch, Dropdown, Button } from 'antd'; 
 import lessStyled from './index.less';
 
+const { Link } = router;
 const defaultSelectedKeys = [];
 const TopNavBar = (props) => {
   const { location: { pathname }, toggleTheme } = props;
