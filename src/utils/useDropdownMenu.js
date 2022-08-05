@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react';
 
-/** MegaMenu, Navigation 專用控制 hook
- *
+/**
+ * ProductMenu, Navigation 專用控制 hook
  * ```jsx
  * const { show, bindEvent, bindDropdownMenu } = useDropdownMenu()
  *

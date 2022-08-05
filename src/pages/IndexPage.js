@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Layout } from 'antd';
 // 引入路由需要的组件
@@ -6,6 +6,7 @@ import { router } from 'dva';
 import RyanThemeProvider from '../components/RyanThemeProvider/RyanThemeProvider';
 import SubRoutes, { RedirectRoute, NoMatchRoute } from '../utils/SubRoutes';
 
+import ScrollToTop from '../components/ScrollToTop';
 import TopNavBar from '../components/TopNavBar';
 import lessStyled from './IndexPage.less';
 
@@ -14,6 +15,7 @@ const { Switch } = router;
 
 function IndexPage(props) {
   const { routes, app } = props;
+  const layoutRef = useRef();
   
   const [isDark, setIsDark] = useState(localStorage.getItem('isDark') === 'true');
 
@@ -22,7 +24,7 @@ function IndexPage(props) {
   }, [isDark]);
 
   return (
-    <Layout className={lessStyled.layout}>
+    <Layout className={lessStyled.layout} ref={layoutRef}>
       {/* theme 傳入該版面樣式 */}
       <RyanThemeProvider theme={{}} isDark={isDark}>
         <Header className={lessStyled.topHeader}>
@@ -41,6 +43,7 @@ function IndexPage(props) {
           </Switch>
         </Content>
       </RyanThemeProvider>
+      <ScrollToTop layoutRef={layoutRef} />
     </Layout>
   );
 }

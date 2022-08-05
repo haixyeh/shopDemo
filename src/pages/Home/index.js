@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'dva';
 import Banner from '../../components/Banner';
-import MainGoodsMenu from '../../components/MainGoodsMenu';
+import MainMenuLayout from '../../components/MainMenuLayout';
 import styled from './index.less';
 
 const Home = () => {
@@ -28,7 +28,7 @@ const Home = () => {
         </div>
       </div>
       {/* 商品分類 */}
-      <MainGoodsMenu />
+      <MainMenuLayout />
     </div>
   );
 }

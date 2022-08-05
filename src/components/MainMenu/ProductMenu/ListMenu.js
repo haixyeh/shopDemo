@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import classNames from 'classnames';
 import navigationStyled from '../navigate.less';
 
-const ListLink = styled.a`
+const ListLink = styled.div`
   color: ${props => props.theme?.primaryColorText};
   &:hover {
     color: ${props => props.theme?.primaryColorTextHover};
@@ -25,9 +25,11 @@ const ListMenu = memo(({ column, history }) => (
               [navigationStyled.hasSub]: item.sub?.length > 0,
             })}
           onClick={event => {
+            event.stopPropagation();
             event.preventDefault();
             history.push(item.url);
           }}
+          key={item.url}
         >
           <ListLink
             className={classNames(navigationStyled.listLink)}

@@ -25,7 +25,7 @@ const ProductMenu = props => {
           [navigationStyled.dark]: dark,
         })}
       >
-        <ListMenu column={data} history={history} color={color} />
+        <ListMenu column={data} history={history} color={color} key="main" />
       </div>
     </div>
   );

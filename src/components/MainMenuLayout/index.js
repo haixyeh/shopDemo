@@ -19,21 +19,20 @@ const isMainMenuItemActive = (item, pathname) => {
   return false;
 }
 
-
 const boxShadowCss = css`
   box-shadow: 0 1px 3px ${props => props.theme?.primaryColor || '#000'};
 `;
 
-const GoodsMenu = styled.div`
+const MainMenuDiv = styled.div`
     background-color: ${props => props.theme?.menuBackgroundColor || '#eee'};
     ${props => !props.isDark && boxShadowCss}
 `;
 
 /* 商品分類 */
-const MainGoodsMenu = () => {
+const MainMenuLayout = () => {
   const { isDark } = useTheme();
   return (
-    <GoodsMenu className={lessStyled.goodsMenu} isDark={isDark} key="goodsMenu">
+    <MainMenuDiv className={lessStyled.mainMenuDiv} isDark={isDark} key="mainMenuDiv">
       <div className={lessStyled.inner}>
         <MainMenu
           list={mainMenuDefault} 
@@ -43,7 +42,7 @@ const MainGoodsMenu = () => {
           isMainMenuItemActive={isMainMenuItemActive}
         />
       </div>
-    </GoodsMenu>
+    </MainMenuDiv>
   );
 }
-export default MainGoodsMenu;
+export default MainMenuLayout;

@@ -103,7 +103,6 @@ NavigationItem.defaultProps = {
 const Navigation = props => {
   const {
     dark,
-    color,
     className,
     list = [],
     active = false,

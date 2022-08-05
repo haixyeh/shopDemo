@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import style from './index.less';
-import MainGoodsMenu from '../../components/MainGoodsMenu';
+import MainMenuLayout from '../../components/MainMenuLayout';
 
 const Category = (props) => {
   const {
@@ -13,7 +13,7 @@ const Category = (props) => {
   return (
     <div className={style.category}>
       {/* 商品分類 */}
-      <MainGoodsMenu />
+      <MainMenuLayout />
       <div className={style.showId}>id: 
         <span className={style.id}>{ id }</span>
       </div>
