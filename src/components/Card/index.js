@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import styled from 'styled-components';
@@ -15,11 +15,12 @@ const animations = {
   ZOOM: lessStyled.imageHoverAnimate,
 }
 const Card = props => {
-  const { title, imageUrl, animation, marketPrice ,dark, price } = props;
+  const { title, imageUrl, animation, marketPrice ,dark, price, url, history } = props;
   return (
     <CardSpan
       className={classNames(lessStyled.cardWrap, {[lessStyled.dark]: dark})}
       maxWidth={200}
+      onClick={() => history?.push(url)}
     >
       <div className={lessStyled.imageContainer}>
         <Image
@@ -42,14 +43,18 @@ Card.propTypes = {
   imageUrl: PropTypes.string.isRequired,
   dark: PropTypes.bool,
   price: PropTypes.number,
-  marketPrice: PropTypes.number
+  marketPrice: PropTypes.number,
+  url: PropTypes.string,
+  history: PropTypes.object
 }
 
 Card.defaultProps = {
   animation: 'ZOOM',
   dark: false,
   price: 0,
-  marketPrice: 0
+  marketPrice: 0,
+  url: null,
+  history: {}
 }
 
 export default Card

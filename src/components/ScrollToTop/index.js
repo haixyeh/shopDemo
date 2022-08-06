@@ -25,16 +25,20 @@ const ScrollToTop = ({ history }) => {
   }, [showScroll]);
 
   useEffect(() => {
-    const unlisten = history.listen(() => {
+    const unListen = history.listen(() => {
       window.scrollTo(0, 0);
     });
     return () => {
-      unlisten();
+      unListen();
     }
   }, [history]);
 
   useEffect(() => {
     window.addEventListener('scroll', checkScrollTop);
+
+    return () => {
+      window.removeEventListener('scroll', checkScrollTop)
+    }
   }, [checkScrollTop]);
 
   const scrollTop = () =>{

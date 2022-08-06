@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, Suspense } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import PropTypes from 'prop-types';
 import { Layout } from 'antd';
 // 引入路由需要的组件
@@ -14,9 +14,7 @@ const { Header, Content } = Layout;
 const { Switch } = router;
 
 function IndexPage(props) {
-  const { routes, app } = props;
-  const layoutRef = useRef();
-  
+  const { routes, app } = props;  
   const [isDark, setIsDark] = useState(localStorage.getItem('isDark') === 'true');
 
   useEffect(() => {
@@ -26,7 +24,7 @@ function IndexPage(props) {
   return (
 
     <Suspense fallback={<div>Loading...</div>}>
-      <Layout className={lessStyled.layout} ref={layoutRef}>
+      <Layout className={lessStyled.layout}>
         {/* theme 傳入該版面樣式 */}
         <RyanThemeProvider theme={{}} isDark={isDark}>
           <Header className={lessStyled.topHeader}>
@@ -45,7 +43,7 @@ function IndexPage(props) {
             </Switch>
           </Content>
         </RyanThemeProvider>
-        <ScrollToTop layoutRef={layoutRef} />
+        <ScrollToTop />
       </Layout>
     </Suspense>
   );
