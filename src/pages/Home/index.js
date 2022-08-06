@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'dva';
 import Banner from '../../components/Banner';
 import MainMenuLayout from '../../components/MainMenuLayout';
+import Card from '../../components/Card';
 import styled from './index.less';
 
 const Home = () => {
@@ -29,6 +30,7 @@ const Home = () => {
       </div>
       {/* 商品分類 */}
       <MainMenuLayout />
+      <Card title="商品" />
     </div>
   );
 }

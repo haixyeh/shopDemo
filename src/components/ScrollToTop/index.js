@@ -14,9 +14,9 @@ const ScrollToTop = () => {
   const [showScroll, setShowScroll] = useState(false)
 
   const checkScrollTop = useCallback(() => {
-    if (!showScroll && window.pageYOffset > 150){
+    if (!showScroll && window.pageYOffset > 100){
       setShowScroll(true)
-    } else if (showScroll && window.pageYOffset <= 150){
+    } else if (showScroll && window.pageYOffset <= 100){
       setShowScroll(false)
     }
   }, [showScroll]);
@@ -27,14 +27,14 @@ const ScrollToTop = () => {
 
   const scrollTop = () =>{
     window.scrollTo({ top: 0, behavior: 'smooth' });
-
-    return () => {
-      window.removeEventListener('scroll', checkScrollTop);
-    }
   };
 
   return (
-    <ScrollToTopElement className="scrollTop" onClick={scrollTop} style={{height: 40, display: showScroll ? 'flex' : 'none'}}>
+    <ScrollToTopElement
+      className="scrollTop"
+      onClick={scrollTop}
+      style={{height: 40, display: showScroll ? 'flex' : 'none'}}
+    >
       <Icon type="up-circle" />
     </ScrollToTopElement>
   );

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, Suspense } from 'react';
 import PropTypes from 'prop-types';
 import { Layout } from 'antd';
 // 引入路由需要的组件
@@ -24,27 +24,30 @@ function IndexPage(props) {
   }, [isDark]);
 
   return (
-    <Layout className={lessStyled.layout} ref={layoutRef}>
-      {/* theme 傳入該版面樣式 */}
-      <RyanThemeProvider theme={{}} isDark={isDark}>
-        <Header className={lessStyled.topHeader}>
-          <TopNavBar {...props} toggleTheme={() => setIsDark(!isDark)} />
-        </Header>
-        <Content className={lessStyled.content} style={{ background: isDark ? '#4C4C4C' : '#FFF' }}>
-          <Switch>
-            {routes.map((route, i) => (
-            // eslint-disable-next-line react/no-array-index-key
-              <SubRoutes key={i} {...route} app={app} />
-            ))}
-            {/* <Redirect to="/home" /> */}
-            <RedirectRoute exact from="/" routes={routes} />
-            {/* 輸入的Route不存在,跳轉到NoMatch */}
-            <NoMatchRoute />
-          </Switch>
-        </Content>
-      </RyanThemeProvider>
-      <ScrollToTop layoutRef={layoutRef} />
-    </Layout>
+
+    <Suspense fallback={<div>Loading...</div>}>
+      <Layout className={lessStyled.layout} ref={layoutRef}>
+        {/* theme 傳入該版面樣式 */}
+        <RyanThemeProvider theme={{}} isDark={isDark}>
+          <Header className={lessStyled.topHeader}>
+            <TopNavBar {...props} toggleTheme={() => setIsDark(!isDark)} />
+          </Header>
+          <Content className={lessStyled.content} style={{ background: isDark ? '#4C4C4C' : '#FFF' }}>
+            <Switch>
+              {routes.map((route, i) => (
+                // eslint-disable-next-line react/no-array-index-key
+                <SubRoutes key={i} {...route} app={app} />
+              ))}
+              {/* <Redirect to="/home" /> */}
+              <RedirectRoute exact from="/" routes={routes} />
+              {/* 輸入的Route不存在,跳轉到NoMatch */}
+              <NoMatchRoute />
+            </Switch>
+          </Content>
+        </RyanThemeProvider>
+        <ScrollToTop layoutRef={layoutRef} />
+      </Layout>
+    </Suspense>
   );
 }
 

@@ -1,6 +1,7 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import Backend from "i18next-http-backend";
+import evnMap from "../config/evn";
 
 i18n
 // 使用 i18next-http-backend
@@ -11,7 +12,7 @@ i18n
   .init({
     backend: {
       // 網頁載入時去下載語言檔的位置
-      loadPath: "/shopDemo/dist/locales/{{lng}}/{{ns}}.json",
+      loadPath: evnMap[process.env.NODE_ENV].I18N_LOAD_PAGE,
     },
     // 當目前的語言檔找不到對應的字詞時，會用 fallbackLng (en) 作為預設語言
     fallbackLng: "en",
