@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import React, { useState, useEffect, useMemo, useCallback, memo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import styled from 'styled-components';
@@ -29,6 +29,56 @@ const DotNavigationSingle = styled.span`
     z-index: 2;
   }
 `;
+
+/**
+ * BannerWrapper 主要繪製 BannerImage
+ */
+const BannerWrapper = memo(({ banners, selected, isSlider, stored }) => {
+  return (
+    <div className={lessStyled.bannerWrapper}>
+      <div className={lessStyled.bannerRatioWrapper} />
+      {banners.map((item, index) => (
+        <div
+          className={classNames(lessStyled.bannerSlide, {
+            [lessStyled.active]: index === selected,
+            [lessStyled.rightIn]:
+          isSlider &&
+          index === selected &&
+          ((selected > stored && !(selected - stored + 1 === banners.length)) ||
+            stored - selected + 1 === banners.length),
+            [lessStyled.leftOut]:
+          isSlider &&
+          index === (banners.length + selected - 1) % banners.length &&
+          ((selected > stored && !(selected - stored + 1 === banners.length)) ||
+            stored - selected + 1 === banners.length),
+            [lessStyled.leftIn]:
+          isSlider &&
+          index === selected &&
+          ((selected < stored && !(stored - selected + 1 === banners.length)) ||
+            selected - stored + 1 === banners.length),
+            [lessStyled.rightOut]:
+          isSlider &&
+          index === (selected + 1) % banners.length &&
+          ((selected < stored && !(stored - selected + 1 === banners.length)) ||
+            selected - stored + 1 === banners.length),
+          })}
+          key={item.id}
+        >
+          <a href={item.url} target="_blank" rel="noreferrer">
+            <Image className={lessStyled.bannerImage} src={item.img} alt="" />
+          </a>
+        </div>
+      ))}
+    </div>
+  );
+});
+
+BannerWrapper.propTypes = {
+  banners: PropTypes.array.isRequired,
+  selected: PropTypes.number.isRequired,
+  isSlider: PropTypes.bool.isRequired,
+  stored: PropTypes.number.isRequired
+}
 
 /**
  * Banner 輪播元件
@@ -89,41 +139,12 @@ const Banner = props => {
           <div
             className={classNames(lessStyled.banner, typeClassNames[dynamicMode])}
           >
-            <div className={lessStyled.bannerWrapper}>
-              <div className={lessStyled.bannerRatioWrapper} />
-              {banners.map((item, index) => (
-                <div
-                  className={classNames(lessStyled.bannerSlide, {
-                    [lessStyled.active]: index === selected,
-                    [lessStyled.rightIn]:
-                    isSlider &&
-                    index === selected &&
-                    ((selected > stored && !(selected - stored + 1 === banners.length)) ||
-                      stored - selected + 1 === banners.length),
-                    [lessStyled.leftOut]:
-                    isSlider &&
-                    index === (banners.length + selected - 1) % banners.length &&
-                    ((selected > stored && !(selected - stored + 1 === banners.length)) ||
-                      stored - selected + 1 === banners.length),
-                    [lessStyled.leftIn]:
-                    isSlider &&
-                    index === selected &&
-                    ((selected < stored && !(stored - selected + 1 === banners.length)) ||
-                      selected - stored + 1 === banners.length),
-                    [lessStyled.rightOut]:
-                    isSlider &&
-                    index === (selected + 1) % banners.length &&
-                    ((selected < stored && !(stored - selected + 1 === banners.length)) ||
-                      selected - stored + 1 === banners.length),
-                  })}
-                  key={item.id}
-                >
-                  <a href={item.url} target="_blank" rel="noreferrer">
-                    <Image className={lessStyled.bannerImage} src={item.img} alt="" />
-                  </a>
-                </div>
-              ))}
-            </div>
+            <BannerWrapper 
+              banners={banners}
+              selected={selected}
+              isSlider={isSlider}
+              stored={stored}
+            />
             <Image
               src={bannerLeft}
               className={classNames(lessStyled.bannerControl, lessStyled.bannerControlLeft)}

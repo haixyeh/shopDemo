@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import navigationStyled from '../navigate.less';
 
-const ListLink = styled.a`
+const ListLink = styled.a`&&{
   color: ${props => props.theme?.primaryColorText};
   &:hover {
     color: ${props => props.theme?.primaryColorTextHover};
   }
-`;
+}`;
 
 /**
  * NavigationItem - [下拉選單(連結) 子項目]

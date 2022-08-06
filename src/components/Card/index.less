@@ -1,6 +1,75 @@
 .cardWrap {
-  display: flex;
-  border: 1px solid #EEE;
-  width: 100%;
-  padding: 20px;
+  position: relative;
+  display: block;
+  border-radius: 5px;
+  padding-bottom: 10px;
+  border: 1px solid #4C4C4C;
+  cursor: pointer;
+  overflow: hidden;
+
+  .imageContainer {
+    position: relative;
+    padding-bottom: 90%;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 10px;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    .image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      max-height: 100%;
+      background-size: cover;
+    }
+    .imageHoverAnimate {
+      transition: all .2s ease-in;
+      max-height: 100%;
+      overflow: hidden;
+    }
+  }
+
+  .info {
+    color: #4C4C4C;
+    padding: 0 8px;
+    text-align: left;
+    .price {
+      color: #FF4E4E;
+      font-size: 22px;
+      transition: font-size .2s ease-in;
+    }
+    .marketPrice {
+      color: #C6C6C6;
+      font-size: 16px;
+      text-decoration: line-through;
+    }
+  }
+  // hover 動態卡片呈現
+  &:hover {
+    .imageHoverAnimate {
+      transform: scale(1.15);
+    }
+    .info {
+      color: #2F2F2F;
+      .price {
+        font-size: 24px;
+      }
+    }
+  }
+  // 深色系控制
+  &.dark {
+    border-color: #C6C6C6;
+    .info {
+      color: #FFF;
+      .marketPrice {
+        color: #C6C6C6;
+      }
+    }
+    &:hover {
+      .info {
+        color: #EEE;
+      }
+    }
+  }
 }

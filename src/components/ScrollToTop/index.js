@@ -1,7 +1,10 @@
 import React, { useState, useEffect, useCallback } from "react";
+import PropTypes from 'prop-types';
+import { router } from "dva";
 import styled from "styled-components";
 import { Icon } from "antd";
 
+const { withRouter } = router;
 
 const ScrollToTopElement = styled.a`
   position: fixed;
@@ -10,7 +13,7 @@ const ScrollToTopElement = styled.a`
   font-size: 44px;
 `;
 
-const ScrollToTop = () => {
+const ScrollToTop = ({ history }) => {
   const [showScroll, setShowScroll] = useState(false)
 
   const checkScrollTop = useCallback(() => {
@@ -20,6 +23,15 @@ const ScrollToTop = () => {
       setShowScroll(false)
     }
   }, [showScroll]);
+
+  useEffect(() => {
+    const unlisten = history.listen(() => {
+      window.scrollTo(0, 0);
+    });
+    return () => {
+      unlisten();
+    }
+  }, [history]);
 
   useEffect(() => {
     window.addEventListener('scroll', checkScrollTop);
@@ -40,4 +52,8 @@ const ScrollToTop = () => {
   );
 }
 
-export default ScrollToTop;
+ScrollToTop.propTypes = {
+  history: PropTypes.object.isRequired,
+}
+
+export default withRouter(ScrollToTop);
