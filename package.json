@@ -7,14 +7,15 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
+    "@ant-design/icons": "^4.7.0",
     "@xstate/fsm": "^1.6.2",
     "@xstate/react": "^1.6.1",
-    "antd": "^3.13.3",
+    "antd": "^4.22.3",
     "axios": "^0.18.0",
     "babel-plugin-import": "^1.11.0",
     "classnames": "^2.3.1",
     "cross-env": "^7.0.3",
-    "dva": "^2.6.0",
+    "dva": "^2.6.0-beta.20",
     "dva-loading": "^3.0.22",
     "formik": "^2.2.9",
     "i18next": "^21.8.16",

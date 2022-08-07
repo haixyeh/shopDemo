@@ -1,6 +1,9 @@
 .cardWrap {
+  margin: 0 5px 10px 5px;
+}
+.cardWrap {
   position: relative;
-  display: block;
+  float: left;
   border-radius: 5px;
   padding-bottom: 10px;
   border: 1px solid #4C4C4C;
@@ -37,6 +40,7 @@
     .price {
       color: #FF4E4E;
       font-size: 22px;
+      line-height: 24px;  // 避免hover card 跑版，要設定 hover 時的font-size
       transition: font-size .2s ease-in;
     }
     .marketPrice {

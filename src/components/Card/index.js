@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import lessStyled from './index.less';
 import Image from '../Image';
 
-const CardSpan = styled.span`&&{
+const CardSpan = styled.a`&&{
   max-width: ${props => props.maxWidth ? `${props.maxWidth}px` : 'none' };
 }`;
 
@@ -15,10 +15,16 @@ const animations = {
   ZOOM: lessStyled.imageHoverAnimate,
 }
 const Card = props => {
-  const { title, imageUrl, animation, marketPrice ,dark, price, url, history } = props;
+  const { className, title, imageUrl, animation, marketPrice ,dark, price, url, history } = props;
   return (
     <CardSpan
-      className={classNames(lessStyled.cardWrap, {[lessStyled.dark]: dark})}
+      className={
+        classNames(
+          lessStyled.cardWrap,
+          {[lessStyled.dark]: dark},
+          className
+        )
+      }
       maxWidth={200}
       onClick={() => history?.push(url)}
     >
@@ -38,6 +44,7 @@ const Card = props => {
 };
 
 Card.propTypes = {
+  className: PropTypes.string,
   title: PropTypes.string.isRequired,
   animation: PropTypes.oneOf(['NONE', 'ZOOM']),
   imageUrl: PropTypes.string.isRequired,
@@ -49,6 +56,7 @@ Card.propTypes = {
 }
 
 Card.defaultProps = {
+  className: '',
   animation: 'ZOOM',
   dark: false,
   price: 0,

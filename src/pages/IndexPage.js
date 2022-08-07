@@ -1,4 +1,5 @@
 import React, { useState, useEffect, Suspense } from 'react';
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { Layout } from 'antd';
 // 引入路由需要的组件
@@ -30,7 +31,7 @@ function IndexPage(props) {
           <Header className={lessStyled.topHeader}>
             <TopNavBar {...props} toggleTheme={() => setIsDark(!isDark)} />
           </Header>
-          <Content className={lessStyled.content} style={{ background: isDark ? '#4C4C4C' : '#FFF' }}>
+          <Content className={classNames(lessStyled.content, 'clearfix')} style={{ background: isDark ? '#4C4C4C' : '#FFF' }}>
             <Switch>
               {routes.map((route, i) => (
                 // eslint-disable-next-line react/no-array-index-key

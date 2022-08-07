@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import PropTypes from 'prop-types';
 import { router } from "dva";
 import styled from "styled-components";
-import { Icon } from "antd";
+import { UpCircleOutlined } from '@ant-design/icons';
 
 const { withRouter } = router;
 
@@ -51,7 +51,7 @@ const ScrollToTop = ({ history }) => {
       onClick={scrollTop}
       style={{height: 40, display: showScroll ? 'flex' : 'none'}}
     >
-      <Icon type="up-circle" />
+      <UpCircleOutlined />
     </ScrollToTopElement>
   );
 }

@@ -2,6 +2,7 @@
 
 .navigate {
   position: relative;
+  z-index: 99999;
   display: none;
   ul,
   li {
@@ -15,6 +16,7 @@
     left: 0;
     display: flex;
   }
+
   .wrapper {
     position: relative;
     display: flex;
@@ -103,4 +105,30 @@
       }
     }
   }
+  // 手機顯示MENU，暫時以此操作
+  @media screen and (max-width: 585px) {
+    .wrapper {
+      .list {
+        .listLink {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        .listItem {
+          width: 150px;
+          &.hasSub {
+            &::before {
+              display: none;
+            }
+            &:hover,
+            &:active {
+              > .listLink > .list {
+                display: none;
+              }
+            }
+          }
+        }
+      }
+    }
+}
 }

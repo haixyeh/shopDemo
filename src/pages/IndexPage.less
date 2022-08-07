@@ -1,39 +1,17 @@
 .layout {
-  min-width: 1000px;
-  height: 100%;
+  min-height: 100vh;
   .topHeader {
     padding: 0;
-    height: 48px;
   }
-  .content {
-    height: 100%;
-    min-height: 1000px;
-  }
+
 }
 
 :global {
-  // 因为修改Table组件的样式，如果只能使用全局样式
-  .menus-table {
-    margin-right: 30px;
-    &.cart {
-      margin-right: 0;
-    }
-    table {
-      tr {
-        // padding: 10px;
-        th {
-          background: none;
-        }
-        th,
-        td {
-          padding: 10px;
-        }
-      }
-    }
+  // 調整antd 4.x版本問題
+  .ant-layout-header {
+    height: 48px;
   }
-
-  // 提交按钮
-  .btn-w-p100 {
-    width: 100%;
+  .ant-layout-header {
+    line-height: 48px;
   }
 }

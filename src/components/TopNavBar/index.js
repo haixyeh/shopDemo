@@ -16,7 +16,7 @@ const TopNavBar = (props) => {
     i18n.changeLanguage(lng);
   };
 
-  const menu = (
+  const menuItems = (
     <Menu>
       <Menu.Item key="switchTheme">
         樣式：<Switch onChange={() => toggleTheme()} checkedChildren="淺" unCheckedChildren="深" />
@@ -41,7 +41,7 @@ const TopNavBar = (props) => {
         <Menu.Item className={lessStyled.login} key="login"><Link to="/login">{t('Login')}</Link></Menu.Item> 
         <Menu.Item className={lessStyled.register} key="register"><Link to="/register">{t('Register')}</Link></Menu.Item>
       </Menu>
-      <Dropdown overlay={menu} className={lessStyled.dropdownMenu}>
+      <Dropdown overlay={menuItems} className={lessStyled.dropdownMenu}>
         <Button type="danger">{t('Setting')}</Button>
       </Dropdown>
     </nav>

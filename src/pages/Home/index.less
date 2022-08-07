@@ -11,5 +11,30 @@
     }
     .pageContain {
         padding: 10px 20px;
+        // 顯示n個 Card ( 200px x n ) +  邊界 5px + 10px(n-1) + 5px
+        .cardWrap {
+            margin: 0 auto;
+            max-width: 840px;
+        }
+        @media screen and (max-width: 1000px) {
+            .cardWrap {
+                max-width: 630px;
+            }
+        }
+        @media screen and (max-width: 800px) {
+            .cardWrap {
+                max-width: 420px;
+            }
+        }
+        // 小於 475px 畫面（特殊小畫面）
+        @media screen and (max-width: 475px) {
+            padding: 10px 0;
+            .cardWrap {
+                .cardItem {
+                    width: calc(~"50% - 10px");
+                    max-width: none;
+                }
+            }
+        }
     }
 }
