@@ -29,7 +29,7 @@ const TopNavBar = (props) => {
       }
       >
         <Menu.Item key="switchTheme">
-          樣式：<Switch onChange={() => toggleTheme()} checkedChildren="淺" unCheckedChildren="深" />
+          樣式：<Switch onChange={() => toggleTheme()} checkedChildren="淺" unCheckedChildren="深" checked={isDark} />
         </Menu.Item>
         <Menu.Item key="changeLanguage">
           <Button onClick={() => changeLanguage("tw")} disabled={i18n.language === 'tw'}>中文</Button>
@@ -66,6 +66,7 @@ const TopNavBar = (props) => {
 }
 
 TopNavBar.propTypes = {
+  active: PropTypes.bool,
   location: PropTypes.shape({
     pathname: PropTypes.string
   }),
@@ -73,6 +74,7 @@ TopNavBar.propTypes = {
 };
 
 TopNavBar.defaultProps = {
+  active: false,
   location: {
     pathname: ''
   },

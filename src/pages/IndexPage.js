@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Suspense } from 'react';
+import React, { useState, Suspense } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { Layout } from 'antd';
@@ -18,19 +18,26 @@ function IndexPage(props) {
   const { routes, app } = props;
   const [isDark, setIsDark] = useState(localStorage.getItem('isDark') ? localStorage.getItem('isDark') === 'true' : true);
 
-  useEffect(() => {
-    localStorage.setItem('isDark', isDark);
-  }, [isDark]);
-
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <Layout className={lessStyled.layout}>
         {/* theme 傳入該版面樣式 */}
         <RyanThemeProvider theme={{}} isDark={isDark}>
           <Header className={lessStyled.topHeader}>
-            <TopNavBar {...props} toggleTheme={() => setIsDark(!isDark)} />
+            <TopNavBar
+              {...props}
+              toggleTheme={() => {
+                setIsDark(preIsDark => {
+                  localStorage.setItem('isDark', !preIsDark);
+                  return !preIsDark;
+                });
+              }}
+            />
           </Header>
-          <Content className={classNames(lessStyled.content, 'clearfix')} style={{ background: isDark ? '#4C4C4C' : '#FFF' }}>
+          <Content 
+            className={classNames(lessStyled.content, 'clearfix')}
+            style={{ background: isDark ? '#4C4C4C' : '#FFF' }}
+          >
             <Switch>
               {routes.map((route, i) => (
                 // eslint-disable-next-line react/no-array-index-key
@@ -53,4 +60,4 @@ IndexPage.propTypes = {
   app: PropTypes.object.isRequired
 };
 
-export default (IndexPage);
+export default IndexPage;

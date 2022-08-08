@@ -1,7 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled, { useTheme, css } from 'styled-components';
 import MainMenu from '../MainMenu';
-import { mainMenuDefault } from './utils/defaultStore';
 import lessStyled from './index.less';
 
 // 站內 route path (後續需要改至config route)
@@ -29,13 +29,13 @@ const MainMenuDiv = styled.div`
 `;
 
 /* 商品分類 */
-const MainMenuLayout = () => {
+const MainMenuLayout = ({ menus }) => {
   const { isDark } = useTheme();
   return (
     <MainMenuDiv className={lessStyled.mainMenuDiv} isDark={isDark} key="mainMenuDiv">
       <div className={lessStyled.inner}>
         <MainMenu
-          list={mainMenuDefault} 
+          list={menus} 
           subMenuDark={isDark}
           routeMap={routeMap}
           isBorderBottom
@@ -44,5 +44,9 @@ const MainMenuLayout = () => {
       </div>
     </MainMenuDiv>
   );
+}
+
+MainMenuLayout.propTypes = {
+  menus: PropTypes.array.isRequired
 }
 export default MainMenuLayout;

@@ -1,4 +1,4 @@
-import { getBannerInfo } from '../service';
+import { getBannerInfo, getMenuData } from '../service';
 
 export default {
   namespace: 'global',
@@ -9,6 +9,7 @@ export default {
       key: 7867861782
     },
     banners: [],
+    menus: []
   },
   subscriptions: {},
   effects: {
@@ -17,12 +18,19 @@ export default {
       // eslint-disable-line
       yield put({ type: 'set_userinfo', payload });
     },
-    *fetchBannerInfo(_, { call, put }) {
-      yield put({ type: 'setLoading', payload: true });
+    *fetchBanner(_, { call, put }) {
       const response = yield call(getBannerInfo);
       yield put({
         type: 'setBannerInfo',
         payload: response,
+      });
+    },
+    *fetchMenu({ payload }, { call, put }) {
+      const { lang } = payload;
+      const response = yield call(() => getMenuData({ url: `lang/${lang}/menuList.json` }));
+      yield put({
+        type: 'setMenuInfo',
+        payload: response.data,
       });
     }
   },
@@ -35,6 +43,12 @@ export default {
       return {
         ...state,
         banners: action.payload,
+      };
+    },
+    setMenuInfo(state, action) {
+      return {
+        ...state,
+        menus: action.payload,
       };
     },
   }

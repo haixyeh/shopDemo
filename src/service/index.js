@@ -1,3 +1,6 @@
+import axios from "axios";
+import evnMap from "../../config/evn";
+
 /* eslint-disable compat/compat */
 const banners = [
   {
@@ -36,6 +39,16 @@ const fakeApiFetch = (data, isError) => new Promise((resolve, reject) => {
  * */
 export async function getBannerInfo(needError) {
   return fakeApiFetch(banners, needError);
+}
+
+export async function getMenuData({ url }) {
+  return axios.get(`mock/${evnMap[process.env.NODE_ENV].ROOT_PATH}${url}`)
+    .then(res => {
+      return res;
+    })
+    .catch(error => {
+      console.error("getMenuData api錯誤了", error);
+    })
 }
 
 export default { getBannerInfo };

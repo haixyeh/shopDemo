@@ -1,0 +1,340 @@
+[
+    {
+        "mainId": 1,
+        "parentId": 1,
+        "menuCategory": "MAIN",
+        "folderSwitch": "NO",
+        "title": "HOME",
+        "link": "home"
+    },
+    {
+        "mainId": 13,
+        "parentId": 0,
+        "menuCategory": "MAIN",
+        "folderSwitch": "NO",
+        "title": "Categories",
+        "link": "setCategoryView",
+        "linkData": "0",
+        "linkDetail": {
+            "text": "Categories",
+            "value": "setCategoryView",
+            "data": {
+                "meta": {
+                    "title": "Categories",
+                    "url": "",
+                    "urlAndroid": "",
+                    "urlIos": ""
+                },
+                "list": [
+                    {
+                        "title": "Ryan",
+                        "url": "/category/1",
+                        "link": "setCategory",
+                        "linkData": "1",
+                        "sub": []
+                    },
+                    {
+                        "title": "Household Appliances",
+                        "url": "/category/2",
+                        "link": "setCategoryView",
+                        "linkData": "2",
+                        "sub": [
+                            {
+                                "title": "Refrigerator",
+                                "url": "/category/21",
+                                "link": "setCategory",
+                                "linkData": "21",
+                                "sub": []
+                            },
+                            {
+                                "title": "Freezer",
+                                "url": "/category/22",
+                                "link": "setCategory",
+                                "linkData": "22",
+                                "sub": []
+                            },
+                            {
+                                "title": "Air Conditioner/Heater",
+                                "url": "/category/23",
+                                "link": "setCategory",
+                                "linkData": "23",
+                                "sub": []
+                            },
+                            {
+                                "title": "Dehumidifier",
+                                "url": "/category/24",
+                                "link": "setCategory",
+                                "linkData": "24",
+                                "sub": []
+                            },
+                            {
+                                "title": "Robotic Vacuums",
+                                "url": "/category/25",
+                                "link": "setCategory",
+                                "linkData": "25",
+                                "sub": []
+                            }
+                        ]
+                    },
+                    {
+                        "title": "3C",
+                        "url": "/category/3",
+                        "link": "setCategoryView",
+                        "linkData": "3",
+                        "sub": [
+                            {
+                                "title": "Mobile/Table",
+                                "url": "/category/31",
+                                "link": "setCategory",
+                                "linkData": "31",
+                                "sub": []
+                            },
+                            {
+                                "title": "Mobile/Table Accessories",
+                                "url": "/category/32",
+                                "link": "setCategory",
+                                "linkData": "32",
+                                "sub": []
+                            },
+                            {
+                                "title": "Camera Accessories",
+                                "url": "/category/33",
+                                "link": "setCategory",
+                                "linkData": "33",
+                                "sub": []
+                            },
+                            {
+                                "title": "Digital Peripheral",
+                                "url": "/category/34",
+                                "link": "setCategory",
+                                "linkData": "34",
+                                "sub": []
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Casual Wear",
+                        "url": "/category/62",
+                        "link": "setCategoryView",
+                        "linkData": "62",
+                        "sub": [
+                            {
+                                "title": "European and American brands",
+                                "url": "/category/63",
+                                "link": "setCategoryView",
+                                "linkData": "63",
+                                "sub": [
+                                    {
+                                        "title": "FILA",
+                                        "url": "/category/67",
+                                        "link": "setCategory",
+                                        "linkData": "67",
+                                        "sub": []
+                                    },
+                                    {
+                                        "title": "CK",
+                                        "url": "/category/66",
+                                        "link": "setCategory",
+                                        "linkData": "66",
+                                        "sub": []
+                                    },
+                                    {
+                                        "title": "ARMANI EXCHANGE",
+                                        "url": "/category/65",
+                                        "link": "setCategory",
+                                        "linkData": "65",
+                                        "sub": []
+                                    },
+                                    {
+                                        "title": "America Eagle",
+                                        "url": "/category/64",
+                                        "link": "setCategory",
+                                        "linkData": "64",
+                                        "sub": []
+                                    }
+                                ]
+                            },
+                            {
+                                "title": "休閒服飾",
+                                "url": "/category/68",
+                                "link": "setCategoryView",
+                                "linkData": "68",
+                                "sub": [
+                                    {
+                                        "title": "北歐小刺蝟",
+                                        "url": "/category/70",
+                                        "link": "setCategory",
+                                        "linkData": "70",
+                                        "sub": []
+                                    },
+                                    {
+                                        "title": "ONEDER旺達",
+                                        "url": "/category/71",
+                                        "link": "setCategory",
+                                        "linkData": "69",
+                                        "sub": []
+                                    },
+                                    {
+                                        "title": "Aaron1982",
+                                        "url": "/category/72",
+                                        "link": "setCategory",
+                                        "linkData": "71",
+                                        "sub": []
+                                    },
+                                    {
+                                        "title": "Aaron1982",
+                                        "url": "/category/74",
+                                        "link": "setCategory",
+                                        "linkData": "71",
+                                        "sub": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Books",
+                        "url": "/category/43",
+                        "link": "setCategoryView",
+                        "linkData": "43",
+                        "sub": [
+                            {
+                                "title": "Literary Fiction",
+                                "url": "/category/44",
+                                "link": "setCategoryView",
+                                "linkData": "44",
+                                "sub": [
+                                    {
+                                        "title": "British Translated",
+                                        "url": "/category/45",
+                                        "link": "setCategory",
+                                        "linkData": "45",
+                                        "sub": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Kitchen Series",
+                        "url": "/category/88",
+                        "link": "setCategoryView",
+                        "linkData": "88",
+                        "sub": [
+                            {
+                                "title": "Micro-wave Oven",
+                                "url": "/category/90",
+                                "link": "setCategory",
+                                "linkData": "90",
+                                "sub": []
+                            },
+                            {
+                                "title": "AirFryer",
+                                "url": "/category/89",
+                                "link": "setCategory",
+                                "linkData": "89",
+                                "sub": []
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Living Furniture",
+                        "url": "/category/93",
+                        "link": "setCategoryView",
+                        "linkData": "93",
+                        "sub": [
+                            {
+                                "title": "Sofa",
+                                "url": "/category/92",
+                                "link": "setCategory",
+                                "linkData": "92",
+                                "sub": []
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Cabinet",
+                        "url": "/category/94",
+                        "link": "setCategoryView",
+                        "linkData": "94",
+                        "sub": [
+                            {
+                                "title": "Wardrobe/System Cabinet",
+                                "url": "/category/95",
+                                "link": "setCategory",
+                                "linkData": "95",
+                                "sub": []
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        "sub": []
+    },
+    {
+        "mainId": 12,
+        "parentId": 12,
+        "menuCategory": "MAIN",
+        "folderSwitch": "YES",
+        "title": "External",
+        "link": "",
+        "linkData": "",
+        "linkDetail": null,
+        "sub": [
+            {
+                "mainId": 123,
+                "parentId": 123,
+                "menuCategory": "SUB",
+                "folderSwitch": "NO",
+                "title": "Google",
+                "link": "_blank",
+                "linkData": "https://www.google.com",
+                "linkDetail": null
+            },
+            {
+                "mainId": 124,
+                "parentId": 124,
+                "menuCategory": "SUB",
+                "folderSwitch": "NO",
+                "title": "Cakeresume",
+                "link": "_blank",
+                "linkData": "https://www.cakeresume.com/dashboard/resumes?ref=dashboard_navs_resumes",
+                "linkDetail": null
+            },
+            {
+                "mainId": 125,
+                "parentId": 125,
+                "menuCategory": "SUB",
+                "folderSwitch": "NO",
+                "title": "Ryan Blog(Medium)",
+                "link": "_blank",
+                "linkData": "https://medium.com/@haix.yeh_54536",
+                "linkDetail": null
+            }
+        ]
+    },
+    {
+        "mainId": 11,
+        "parentId": 11,
+        "menuCategory": "MAIN",
+        "folderSwitch": "NO",
+        "title": "Latest Events",
+        "link": "newEventView",
+        "linkData": "",
+        "linkDetail": {
+            "text": "Latest Events",
+            "value": "newEventView",
+            "data": {
+                "meta": {
+                    "title": "Latest Events",
+                    "url": "",
+                    "urlAndroid": "",
+                    "urlIos": ""
+                },
+                "list": []
+            }
+        },
+        "sub": []
+    }
+]
