@@ -11,6 +11,15 @@ const ScrollToTopElement = styled.a`
   bottom: 3%;
   right: 3%;
   font-size: 44px;
+  svg {
+    background-color: #4C4C4C;
+    border-radius: 99em;
+    opacity: 0.8;
+    box-shadow: 1px 1px #4C4C4C;
+  }
+  a {
+    color: ${props => props.theme?.primaryColor };
+  }
 `;
 
 const ScrollToTop = ({ history }) => {

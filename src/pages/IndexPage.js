@@ -23,7 +23,6 @@ function IndexPage(props) {
   }, [isDark]);
 
   return (
-
     <Suspense fallback={<div>Loading...</div>}>
       <Layout className={lessStyled.layout}>
         {/* theme 傳入該版面樣式 */}
@@ -37,7 +36,6 @@ function IndexPage(props) {
                 // eslint-disable-next-line react/no-array-index-key
                 <SubRoutes key={i} {...route} app={app} />
               ))}
-              {/* <Redirect to="/home" /> */}
               <RedirectRoute exact from="/" routes={routes} />
               {/* 輸入的Route不存在,跳轉到NoMatch */}
               <NoMatchRoute />

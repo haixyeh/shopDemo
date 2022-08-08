@@ -25,10 +25,34 @@
   }
   .dropdownMenu {
     position: absolute;
+    top: 0;
     right: 0;
     box-sizing: border-box;
     border-radius: 0;
     width: 100px;
     height: calc(@header-height);
+
+    display: inline-block;
+    font-weight: 400;
+    white-space: nowrap;
+    text-align: center;
+    background-image: none;
+    border: 1px solid #FF4D4F;
+    background-color: #FF4D4F;
+    color: #fff;
+  }
+  .dropdownContent {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-left: -77px;
+    z-index: 99999999;
+    .menu {
+      display: none;
+      border: 1px solid #000;
+      &.open {
+        display: inline-block;
+      }
+    }
   }
 }
