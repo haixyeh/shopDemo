@@ -1,5 +1,4 @@
 import axios from "axios";
-import evnMap from "../../config/evn";
 
 /* eslint-disable compat/compat */
 const banners = [
@@ -42,7 +41,7 @@ export async function getBannerInfo(needError) {
 }
 
 export async function getMenuData({ url }) {
-  return axios.get(`mock/${evnMap[process.env.NODE_ENV].ROOT_PATH}${url}`)
+  return axios.get(`mock/${url}`)
     .then(res => {
       return res;
     })
