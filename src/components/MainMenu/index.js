@@ -52,7 +52,7 @@ const MainMenuItem = props => {
     history,
   } = props;
   const link = folderSwitch === 'YES' ? '' : rawLink;
-  const { bindEvent, bindDropdownMenu } = useDropdownMenu();
+  const { visible, bindEvent, bindDropdownMenu } = useDropdownMenu();
   const categoryViewData = linkData === '0' ? linkDetail?.data?.list : linkDetail?.data?.list[0]?.sub
   const dropdownElementMap = useMemo(() => (
     {
@@ -83,7 +83,7 @@ const MainMenuItem = props => {
     }
   ), [categoryViewData, history, routeMap, subMenuDark, sub, textHoverColor, bindDropdownMenu]);
 
-  const hasDropdown = !!dropdownElementMap[link]; // 是否有下拉狀態
+  const hasDropdown = visible; // 是否有下拉狀態
   const dropdownEvent = dropdownElementMap[link] ? bindEvent() : null;
   const dropdownElement = useMemo(() => (
     <>

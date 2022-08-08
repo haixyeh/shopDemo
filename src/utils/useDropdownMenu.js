@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 
 /**
  * ProductMenu, Navigation 專用控制 hook
@@ -20,15 +20,22 @@ import { useState, useCallback } from 'react';
  */
 export default function useDropdownMenu() {
   const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    return () => {
+      setVisible(false);
+    };
+  }, []);
 
   const show = useCallback(() => setVisible(true), []);
   const hide = useCallback(() => setVisible(false), []);
+  const toggle = useCallback(() => setVisible(preValue => !preValue), []);
   const bindEvent = useCallback(
     () => ({
       onMouseEnter: show,
       onMouseLeave: hide,
+      onClick: toggle
     }),
-    [show, hide]
+    [show, hide, toggle]
   );
 
   const bindDropdownMenu = useCallback(() => ({ active: visible }), [visible]);
