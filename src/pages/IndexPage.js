@@ -15,8 +15,8 @@ const { Header, Content } = Layout;
 const { Switch } = router;
 
 function IndexPage(props) {
-  const { routes, app } = props;  
-  const [isDark, setIsDark] = useState(localStorage.getItem('isDark') === 'true');
+  const { routes, app } = props;
+  const [isDark, setIsDark] = useState(localStorage.getItem('isDark') ? localStorage.getItem('isDark') === 'true' : true);
 
   useEffect(() => {
     localStorage.setItem('isDark', isDark);
