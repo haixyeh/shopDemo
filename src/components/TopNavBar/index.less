@@ -27,19 +27,21 @@
     position: absolute;
     top: 0;
     right: 0;
+    display: inline-block;
     box-sizing: border-box;
     border-radius: 0;
+    border: 1px solid #FF4D4F;
+    background-color: #FF4D4F;
     width: 100px;
     height: calc(@header-height);
-
-    display: inline-block;
     font-weight: 400;
     white-space: nowrap;
     text-align: center;
-    background-image: none;
-    border: 1px solid #FF4D4F;
-    background-color: #FF4D4F;
     color: #fff;
+    cursor: pointer;
+    &:hover {
+      background-color: #DF4648;
+    }
   }
   .dropdownContent {
     position: absolute;

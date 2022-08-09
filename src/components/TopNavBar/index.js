@@ -51,16 +51,13 @@ const TopNavBar = (props) => {
         <Menu.Item className={lessStyled.login} key="login"><Link to="/login">{t('Login')}</Link></Menu.Item> 
         <Menu.Item className={lessStyled.register} key="register"><Link to="/register">{t('Register')}</Link></Menu.Item>
       </Menu>
-      <button 
-        className={lessStyled.dropdownMenu}
-        type="button"
-        {...bindEvent()}
-      >
+      <div className={lessStyled.dropdownMenu} {...bindEvent()}>
         {t('Setting')}
         <span className={lessStyled.dropdownContent}>
           <WebSettingMenu {...bindDropdownMenu()} />
         </span>
-      </button>
+      </div>
+
     </nav>
   );
 }

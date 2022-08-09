@@ -33,6 +33,7 @@ const fakeApiFetch = (data, isError) => new Promise((resolve, reject) => {
     reject(new Error("api don't work"));
   }, 600);
 });
+
 /**
  * getBannerInfo 輪播圖資訊
  * */
@@ -46,6 +47,7 @@ export async function getMenuData({ url }) {
       return res;
     })
     .catch(error => {
+      // eslint-disable-next-line no-console
       console.error("getMenuData api錯誤了", error);
     })
 }

@@ -4,4 +4,8 @@
         "orderingguide"
     ],
     "editor.tabSize": 2,
+    "i18n-ally.localesPaths": [
+        "public/locales",
+        "public/mock/lang"
+    ],
 }
