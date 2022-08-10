@@ -47,6 +47,10 @@ const MainMenuLayout = ({ menus }) => {
 }
 
 MainMenuLayout.propTypes = {
-  menus: PropTypes.array.isRequired
+  menus: PropTypes.array
 }
+MainMenuLayout.defaultProps = {
+  menus: []
+}
+
 export default MainMenuLayout;

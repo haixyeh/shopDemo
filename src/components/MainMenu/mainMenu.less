@@ -16,18 +16,21 @@
   color: inherit;
 
   .dropdownArrow {
-    margin-left: 0.75em;
+    margin-left: 0.75rem;
   }
 
   .item {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0 1em;
+    padding: 0 1rem;
     font-size: @font-size-md;
     white-space: nowrap;
     background-color: transparent;
     border-bottom: 3px solid transparent;
+    @media screen and (max-width: 600px) {
+      padding: 0 0.5rem;
+    }
     cursor: pointer;
     &.dropdown {
       position: relative;

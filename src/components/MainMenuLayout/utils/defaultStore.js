@@ -327,7 +327,7 @@ export const mainMenuDefault = [
         folderSwitch: 'NO',
         title: 'Cakeresume',
         link: '_blank',
-        linkData: 'https://www.cakeresume.com/dashboard/resumes?ref=dashboard_navs_resumes',
+        linkData: 'https://www.cakeresume.com/me/yeh-ryan-a061b8',
         linkDetail: null,
       },
       {
