@@ -29,28 +29,31 @@ const MainMenuDiv = styled.div`
 `;
 
 /* 商品分類 */
-const MainMenuLayout = ({ menus }) => {
+const MainMenuLayout = ({ menus, loading }) => {
   const { isDark } = useTheme();
   return (
     <MainMenuDiv className={lessStyled.mainMenuDiv} isDark={isDark} key="mainMenuDiv">
       <div className={lessStyled.inner}>
-        <MainMenu
+        {loading && <>Loading...</>}
+        {!loading && <MainMenu
           list={menus} 
           subMenuDark={isDark}
           routeMap={routeMap}
           isBorderBottom
           isMainMenuItemActive={isMainMenuItemActive}
-        />
+        />}
       </div>
     </MainMenuDiv>
   );
 }
 
 MainMenuLayout.propTypes = {
-  menus: PropTypes.array
+  menus: PropTypes.array,
+  loading: PropTypes.bool
 }
 MainMenuLayout.defaultProps = {
-  menus: []
+  menus: [],
+  loading: false
 }
 
 export default MainMenuLayout;

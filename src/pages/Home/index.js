@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
@@ -28,27 +28,19 @@ const Home = ({ history }) => {
   const dispatch = useDispatch();
   const { i18n } = useTranslation();
   const { isDark } = useTheme(); // 暫時寫，之後會有CardList 在寫進去
-  const { banners, menus, isLoading } = useSelector(
+  const { banners, menus, isLoading, menuIsLoading } = useSelector(
     ({ global, loading }) => ({
       banners: global.banners,
       menus: global.menus,
-      isLoading: loading.effects['global/fetchBanner']
+      isLoading: loading.effects['global/fetchBanner'],
+      menuIsLoading: loading.effects['global/fetchMenu']
     })
   );
-  const i18nRef = useRef(i18n.language);
 
   useEffect(() => {
     if (banners.length) return;
     dispatch({ type: 'global/fetchBanner' });
   }, [dispatch, banners.length, i18n.language]);
-
-  useEffect(() => {
-    if (i18n.language === i18nRef.current && menus.length > 0) return;
-    dispatch({
-      type: 'global/fetchMenu', payload: { lang: i18n.language }
-    })
-    i18nRef.current = i18n.language;
-  }, [dispatch, i18n.language, menus.length]);
 
   return (
     <div className={lessStyled.home}>
@@ -60,7 +52,7 @@ const Home = ({ history }) => {
         </div>
       </div>
       {/* 商品分類 */}
-      <MainMenuLayout menus={menus} />
+      <MainMenuLayout menus={menus} loading={menuIsLoading} />
       <div className={lessStyled.pageContain}>
         <div className={classNames(lessStyled.cardWrap, 'clearfix')}>
           {cardListData.map((item, idx) => (
