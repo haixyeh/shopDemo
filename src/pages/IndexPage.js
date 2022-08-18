@@ -52,6 +52,14 @@ function Main(props) {
   );
 }
 
+Main.propTypes = {
+  routes: PropTypes.array.isRequired,
+  app: PropTypes.object.isRequired,
+  isDark: PropTypes.bool.isRequired,
+  setIsDark: PropTypes.func.isRequired
+};
+
+
 function IndexPage(props) {
   const { routes, app } = props;
   const [isDark, setIsDark] = useState(localStorage.getItem('isDark') ? localStorage.getItem('isDark') === 'true' : true);
