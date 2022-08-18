@@ -17,6 +17,22 @@ const { Switch } = router;
 
 function Main(props) {
   const { isDark, setIsDark, routes, app } = props;
+  const { i18n } = useTranslation();
+  const i18nRef = useRef(i18n.language);
+  const dispatch = useDispatch();
+  const { menus } = useSelector(
+    ({ global }) => ({
+      menus: global.menus,
+    })
+  );
+
+  useEffect(() => {
+    if (i18n.language === i18nRef.current && menus.length > 0) return;
+    dispatch({
+      type: 'global/fetchMenu', payload: { lang: i18n.language }
+    })
+    i18nRef.current = i18n.language;
+  }, [dispatch, i18n.language, menus.length]);
   return (
     <Layout className={lessStyled.layout}>
       {/* theme 傳入該版面樣式 */}
@@ -63,23 +79,6 @@ Main.propTypes = {
 function IndexPage(props) {
   const { routes, app } = props;
   const [isDark, setIsDark] = useState(localStorage.getItem('isDark') ? localStorage.getItem('isDark') === 'true' : true);
-  const { i18n } = useTranslation();
-  const i18nRef = useRef(i18n.language);
-  const dispatch = useDispatch();
-
-  const { menus } = useSelector(
-    ({ global }) => ({
-      menus: global.menus,
-    })
-  );
-
-  useEffect(() => {
-    if (i18n.language === i18nRef.current && menus.length > 0) return;
-    dispatch({
-      type: 'global/fetchMenu', payload: { lang: i18n.language }
-    })
-    i18nRef.current = i18n.language;
-  }, [dispatch, i18n.language, menus.length]);
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
