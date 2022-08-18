@@ -15,6 +15,43 @@ import lessStyled from './IndexPage.less';
 const { Header, Content } = Layout;
 const { Switch } = router;
 
+function Main(props) {
+  const { isDark, setIsDark, routes, app } = props;
+  return (
+    <Layout className={lessStyled.layout}>
+      {/* theme 傳入該版面樣式 */}
+      <RyanThemeProvider theme={{}} isDark={isDark}>
+        <Header className={lessStyled.topHeader}>
+          <TopNavBar
+            {...props}
+            toggleTheme={() => {
+              setIsDark(preIsDark => {
+                localStorage.setItem('isDark', !preIsDark);
+                return !preIsDark;
+              });
+            }}
+          />
+        </Header>
+        <Content 
+          className={classNames(lessStyled.content, 'clearfix')}
+          style={{ background: isDark ? '#4C4C4C' : '#FFF' }}
+        >
+          <Switch>
+            {routes.map((route, i) => (
+            // eslint-disable-next-line react/no-array-index-key
+              <SubRoutes key={i} {...route} app={app} />
+            ))}
+            <RedirectRoute exact from="/" routes={routes} />
+            {/* 輸入的Route不存在,跳轉到NoMatch */}
+            <NoMatchRoute />
+          </Switch>
+        </Content>
+      </RyanThemeProvider>
+      <ScrollToTop />
+    </Layout>
+  );
+}
+
 function IndexPage(props) {
   const { routes, app } = props;
   const [isDark, setIsDark] = useState(localStorage.getItem('isDark') ? localStorage.getItem('isDark') === 'true' : true);
@@ -38,37 +75,12 @@ function IndexPage(props) {
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <Layout className={lessStyled.layout}>
-        {/* theme 傳入該版面樣式 */}
-        <RyanThemeProvider theme={{}} isDark={isDark}>
-          <Header className={lessStyled.topHeader}>
-            <TopNavBar
-              {...props}
-              toggleTheme={() => {
-                setIsDark(preIsDark => {
-                  localStorage.setItem('isDark', !preIsDark);
-                  return !preIsDark;
-                });
-              }}
-            />
-          </Header>
-          <Content 
-            className={classNames(lessStyled.content, 'clearfix')}
-            style={{ background: isDark ? '#4C4C4C' : '#FFF' }}
-          >
-            <Switch>
-              {routes.map((route, i) => (
-                // eslint-disable-next-line react/no-array-index-key
-                <SubRoutes key={i} {...route} app={app} />
-              ))}
-              <RedirectRoute exact from="/" routes={routes} />
-              {/* 輸入的Route不存在,跳轉到NoMatch */}
-              <NoMatchRoute />
-            </Switch>
-          </Content>
-        </RyanThemeProvider>
-        <ScrollToTop />
-      </Layout>
+      <Main
+        isDark={isDark}
+        setIsDark={setIsDark}
+        routes={routes}
+        app={app}
+      />
     </Suspense>
   );
 }
